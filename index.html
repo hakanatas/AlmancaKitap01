@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geheimnis im Hotel – Okuma ve Çalışma Odası</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f5ecdc; --paper2:#efe2cb; --card:#fffaf0; --ink:#1f2433; --ink2:#5a5547;
+  --wine:#7a1f2b; --wine2:#9b2c3a; --brass:#c8962e; --brass2:#e6b94f; --line:#d9c7a6;
+  --ok:#2f7d4a; --bad:#b5382f; --hint:#8a6d1e;
+  --der:#2b5ea8; --die:#c0392b; --das:#2e8b57;
+  --laura:#c23a3a; --simon:#2c4a7a; --sven:#7a1f2b; --moritz:#3f7a3a; --breuer:#8a5a2b; --clarissa:#a07a10; --kati:#21807a; --moser:#2b2b40;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font:18px/1.55 "Atkinson Hyperlegible",system-ui,sans-serif;
+  background:
+    radial-gradient(1200px 500px at 50% -200px, rgba(122,31,43,.18), transparent 70%),
+    repeating-linear-gradient(90deg, rgba(122,31,43,.035) 0 2px, transparent 2px 46px),
+    repeating-linear-gradient(0deg, rgba(200,150,46,.05) 0 1px, transparent 1px 46px),
+    linear-gradient(180deg,var(--paper),var(--paper2));
+  background-attachment:fixed; min-height:100vh}
+button{font:inherit;cursor:pointer;color:inherit}
+input,select{font:inherit;color:var(--ink)}
+h1,h2,h3{font-family:"Young Serif",Georgia,serif;font-weight:400;margin:.2em 0 .4em;line-height:1.15}
+.mono{font-family:"Courier Prime",monospace}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,#5e1520,#7a1f2b);color:#fbeed6;
+  border-bottom:3px solid var(--brass);box-shadow:0 6px 18px rgba(60,10,20,.25)}
+.hwrap{max-width:1120px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;flex:1;min-width:230px}
+.brand .crest{width:44px;height:44px;border:2px solid var(--brass2);border-radius:50%;display:grid;place-items:center;font-family:"Young Serif";font-size:22px;color:var(--brass2)}
+.brand b{font-family:"Young Serif";font-weight:400;font-size:22px;display:block;letter-spacing:.3px}
+.brand small{opacity:.8;font-size:13px;letter-spacing:1.5px;text-transform:uppercase}
+.coins{display:flex;align-items:center;gap:8px;background:rgba(0,0,0,.22);padding:6px 12px 6px 6px;border-radius:30px;border:1px solid rgba(230,185,79,.5)}
+.coin{width:28px;height:28px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff3b8,#e6b94f 45%,#a87618 90%);box-shadow:inset 0 -2px 0 rgba(0,0,0,.2),0 1px 2px rgba(0,0,0,.4);display:grid;place-items:center;font:700 12px "Courier Prime";color:#6b4a07}
+.coins .n{font:700 17px "Courier Prime"}
+.coins .n small{opacity:.7;font-weight:400}
+.coin.pop{animation:pop .5s}
+@keyframes pop{40%{transform:scale(1.5) rotate(20deg)}}
+
+nav.keys{max-width:1120px;margin:0 auto;padding:0 18px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav.keys a{position:relative;text-decoration:none;color:#fbeed6;padding:9px 16px 12px 30px;font-weight:700;font-size:15px;white-space:nowrap;
+  border-radius:10px 10px 0 0;opacity:0;animation:drop .5s forwards}
+nav.keys a::before{content:"";position:absolute;left:12px;top:50%;width:9px;height:9px;margin-top:-6px;border-radius:50%;border:2px solid var(--brass2)}
+nav.keys a .rn{font:400 11px "Courier Prime";opacity:.7;margin-left:6px}
+nav.keys a.on{background:var(--paper);color:var(--wine)}
+nav.keys a.on::before{background:var(--brass)}
+nav.keys a:nth-child(1){animation-delay:.05s}nav.keys a:nth-child(2){animation-delay:.12s}nav.keys a:nth-child(3){animation-delay:.19s}nav.keys a:nth-child(4){animation-delay:.26s}nav.keys a:nth-child(5){animation-delay:.33s}
+@keyframes drop{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+
+main{max-width:1120px;margin:0 auto;padding:24px 18px 120px}
+section.view{display:none}
+section.view.on{display:block;animation:rise .5s both}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.stagger>*{opacity:0;animation:rise .55s forwards}
+.stagger>*:nth-child(1){animation-delay:.05s}.stagger>*:nth-child(2){animation-delay:.12s}.stagger>*:nth-child(3){animation-delay:.19s}.stagger>*:nth-child(4){animation-delay:.26s}.stagger>*:nth-child(5){animation-delay:.33s}.stagger>*:nth-child(6){animation-delay:.4s}.stagger>*:nth-child(n+7){animation-delay:.46s}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;box-shadow:0 1px 0 #fff inset,0 8px 24px -14px rgba(80,40,10,.35)}
+.lead{color:var(--ink2);max-width:760px}
+.pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--card);border-radius:30px;padding:6px 14px;font-size:15px}
+.pill.on{background:var(--wine);color:#fbeed6;border-color:var(--wine)}
+.btn{border:0;border-radius:10px;padding:9px 16px;font-weight:700;background:var(--wine);color:#fbeed6;box-shadow:0 2px 0 #4a1019}
+.btn:active{transform:translateY(1px);box-shadow:none}
+.btn.ghost{background:transparent;color:var(--wine);box-shadow:none;border:1.5px solid var(--wine)}
+.btn.brass{background:var(--brass);color:#3b2805;box-shadow:0 2px 0 #8a6312}
+.btn.sm{padding:5px 11px;font-size:14px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.muted{color:var(--ink2);font-size:15px}
+.tr{color:#6b5f48;font-style:italic;font-size:16px}
+
+/* ---------- home ---------- */
+.hero{display:grid;grid-template-columns:1.3fr 1fr;gap:22px;align-items:stretch}
+.hero .ticket{background:var(--wine);color:#fbeed6;border-radius:18px;padding:26px 28px;position:relative;overflow:hidden}
+.hero .ticket::after{content:"";position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;border:24px solid rgba(230,185,79,.2)}
+.hero h1{font-size:44px;color:#fff3dc}
+.hero .ticket p{opacity:.9}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;margin-top:22px}
+.tile{display:block;text-decoration:none;color:inherit;padding:16px;border-radius:14px;background:var(--card);border:1px solid var(--line);position:relative}
+.tile:hover{border-color:var(--wine)}
+.tile .tag{font:700 12px "Courier Prime";color:var(--wine);letter-spacing:1px}
+.tile h3{margin:.3em 0 .2em;font-size:21px}
+.tile p{margin:0;font-size:15px;color:var(--ink2)}
+.steps{counter-reset:s;padding:0;margin:0;list-style:none}
+.steps li{counter-increment:s;padding:6px 0 6px 38px;position:relative}
+.steps li::before{content:counter(s);position:absolute;left:0;top:6px;width:26px;height:26px;border-radius:50%;background:var(--brass);color:#3b2805;font:700 14px "Courier Prime";display:grid;place-items:center}
+
+/* ---------- reader ---------- */
+.chapters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.chapters button{border:1.5px solid var(--line);background:var(--card);border-radius:12px;padding:8px 14px;text-align:left;line-height:1.2}
+.chapters button b{font:700 13px "Courier Prime";color:var(--wine);display:block}
+.chapters button.on{background:var(--wine);border-color:var(--wine);color:#fbeed6}
+.chapters button.on b{color:var(--brass2)}
+.player{position:sticky;top:104px;z-index:20;display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:#2a1f1c;color:#f3e6cc;border-radius:14px;padding:10px 14px;margin-bottom:16px;box-shadow:0 10px 24px -12px rgba(0,0,0,.6)}
+.player .play{width:44px;height:44px;border-radius:50%;border:0;background:var(--brass);color:#2a1f1c;font-size:20px;display:grid;place-items:center}
+.player .bar{flex:1;min-width:120px;height:8px;border-radius:5px;background:rgba(255,255,255,.15);position:relative;cursor:pointer}
+.player .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:5px;background:var(--brass2);width:0}
+.player .t{font:400 14px "Courier Prime";min-width:92px}
+.player select,.player .tg{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#f3e6cc;border-radius:8px;padding:5px 8px;font-size:14px}
+.player .tg.on{background:var(--brass);color:#2a1f1c;border-color:var(--brass)}
+.reader{display:grid;grid-template-columns:1fr 280px;gap:22px;align-items:start}
+.page{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 26px 28px;box-shadow:0 10px 30px -18px rgba(80,40,10,.5)}
+.page h2{font-size:30px;color:var(--wine)}
+.page h2 small{display:block;font:italic 17px "Atkinson Hyperlegible";color:var(--ink2)}
+.s{position:relative;padding:7px 10px 7px 12px;border-radius:10px;margin:2px 0;transition:background .25s;display:grid;grid-template-columns:96px 1fr 34px;gap:8px;align-items:start}
+.s .who{font:700 14px "Courier Prime";padding-top:4px;text-align:right}
+.s .txt{font-size:20px;line-height:1.55}
+.s .txt .tr{display:none;margin-top:3px}
+.showtr .s .txt .tr,.s.tropen .txt .tr{display:block}
+.s .pb{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:13px;opacity:.55}
+.s:hover .pb{opacity:1}
+.s.now{background:linear-gradient(90deg,rgba(230,185,79,.35),rgba(230,185,79,.08))}
+.s.now .pb{background:var(--brass);opacity:1}
+.s.N .txt,.s.T .txt{color:#2b2b2b}
+.s.T .txt{font-family:"Young Serif";font-size:22px;color:var(--wine)}
+.s.C .txt{display:inline-block}
+.s.C .bub{display:inline-block;padding:6px 12px;border-radius:14px;max-width:100%}
+.s.C.left .bub{background:#dbe7f5}
+.s.C.right .bub{background:#f6d9d6}
+.s.P .txt{font-style:italic}
+.s.H .txt{font-family:"Young Serif";font-size:24px;background:#3b2a24;color:#f7e9cf;padding:10px 14px;border-radius:8px;text-transform:uppercase;letter-spacing:.5px}
+.s.S .txt{font:700 22px "Courier Prime";color:var(--brass)}
+.charhead{display:flex;align-items:center;gap:10px;margin:16px 0 2px;font-family:"Young Serif";font-size:22px}
+.avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:#fff;font:700 15px "Atkinson Hyperlegible";flex:none}
+.w{cursor:pointer;border-bottom:1.5px dotted rgba(122,31,43,.35);border-radius:3px}
+.w:hover{background:rgba(230,185,79,.35)}
+.w.flash{background:var(--brass2)}
+.side{position:sticky;top:180px;display:grid;gap:14px}
+.side .card h3{font-size:19px;margin-top:0}
+.chipset{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:8px;padding:3px 9px;font-size:15px}
+.art-der{color:var(--der);font-weight:700}.art-die{color:var(--die);font-weight:700}.art-das{color:var(--das);font-weight:700}
+
+/* popover */
+#pop{position:fixed;z-index:60;display:none;max-width:310px;background:#2a1f1c;color:#f6e9d0;border-radius:12px;padding:12px 14px;box-shadow:0 16px 30px -10px rgba(0,0,0,.6);border:1px solid var(--brass)}
+#pop .de{font-family:"Young Serif";font-size:20px;color:#fff}
+#pop .trw{font-size:17px;margin:4px 0 8px;color:var(--brass2)}
+#pop .row button{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:4px 10px;font-size:14px}
+
+/* ---------- vocab ---------- */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.vcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.vcard .d{font-size:18px}
+.vcard .t{font-size:15px;color:var(--ink2)}
+.vcard button{border:0;background:#f1e4cb;border-radius:8px;padding:4px 8px}
+.flash-wrap{perspective:1000px;max-width:460px;margin:10px auto}
+.fcard{height:230px;position:relative;transform-style:preserve-3d;transition:transform .5s;cursor:pointer}
+.fcard.flip{transform:rotateY(180deg)}
+.fcard>div{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;display:grid;place-items:center;text-align:center;padding:20px;border:2px solid var(--wine)}
+.fcard .f{background:var(--card);font-family:"Young Serif";font-size:34px}
+.fcard .b{background:var(--wine);color:#fbeed6;transform:rotateY(180deg);font-size:26px}
+
+/* ---------- grammar ---------- */
+.gnav{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.gbox{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.rule{background:#2a1f1c;color:#f3e6cc;border-radius:14px;padding:16px 18px}
+.rule h3{color:var(--brass2)}
+.rule table{border-collapse:collapse;width:100%;font-size:16px}
+.rule td,.rule th{border-bottom:1px solid rgba(255,255,255,.12);padding:5px 6px;text-align:left}
+.rule th{color:var(--brass2);font-weight:700}
+.rule .hl{color:var(--brass2);font-weight:700}
+.frame{display:flex;gap:0;flex-wrap:wrap;margin:8px 0;font-size:16px}
+.frame span{padding:6px 10px;border:1px solid rgba(255,255,255,.25)}
+.frame span.v{background:var(--brass);color:#2a1f1c;font-weight:700}
+.ex{display:flex;align-items:flex-start;gap:10px;padding:5px 0}.ex>div{flex:1;min-width:0}
+.ex .ico{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:12px;flex:none}
+
+/* ---------- exercises ---------- */
+.task{margin-bottom:20px}
+.task .hd{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px}
+.task .num{flex:none;width:40px;height:40px;border-radius:50%;background:var(--wine);color:#fbeed6;display:grid;place-items:center;font:700 18px "Courier Prime"}
+.task .hd h3{margin:0;font-size:21px}
+.task .hd .tri{font-size:15px;color:var(--ink2);font-style:italic}
+.task .tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;align-items:center}
+.task .stat{font-weight:700;margin-left:auto}
+.kap{display:flex;align-items:center;gap:12px;margin:30px 0 12px}
+.kap h2{margin:0;color:var(--wine);font-size:28px}
+.kap .badge{background:var(--brass);color:#3b2805;border-radius:30px;padding:3px 12px;font:700 13px "Courier Prime"}
+.blank{border:0;border-bottom:2px solid var(--line);background:#fffdf7;padding:3px 6px;border-radius:6px 6px 0 0;min-width:120px;outline:none}
+.blank:focus{border-color:var(--wine);background:#fff}
+.blank.ok,.sel.ok{border-color:var(--ok);background:#e5f3e9}
+.blank.bad,.sel.bad{border-color:var(--bad);background:#fbe5e2}
+.sel{border:1.5px solid var(--line);border-radius:8px;padding:4px 6px;background:#fffdf7}
+.mark{font-weight:700;margin-left:4px}
+.mark.ok{color:var(--ok)}.mark.bad{color:var(--bad)}
+.fb{font-size:15px;margin-top:4px}
+.fb.ok{color:var(--ok)}.fb.bad{color:var(--bad)}.fb.hint{color:var(--hint)}
+ol.items{margin:0;padding-left:0;list-style:none}
+ol.items li{padding:7px 0;border-bottom:1px dashed #e7d8bb;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+ol.items li .n{font:700 15px "Courier Prime";color:var(--wine);width:22px}
+.strike{text-decoration:line-through;color:var(--bad)}
+/* wortigel */
+.igel{position:relative;height:300px;margin:6px 0}
+.igel svg{position:absolute;inset:0;width:100%;height:100%}
+.igel .center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--wine);color:#fbeed6;padding:10px 22px;border-radius:50%;font-family:"Young Serif";font-size:22px}
+.igel .leaf{position:absolute;transform:translate(-50%,-50%)}
+.igel .leaf input{width:140px;text-align:center;border:1.5px solid var(--line);border-radius:20px;padding:5px 8px;background:#fffdf7}
+.igel .leaf input.ok{border-color:var(--ok);background:#e5f3e9}
+.igel .leaf input.maybe{border-color:var(--hint);background:#fbf1d6}
+.igel .leaf .fixed{display:inline-block;border:1.5px solid var(--wine);border-radius:20px;padding:5px 16px;background:#fff}
+/* profile cards ü3 */
+.prof{display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:start;padding:10px 0}
+.prof .pic{width:110px;height:110px;border-radius:16px;display:grid;place-items:center;font-family:"Young Serif";font-size:40px;color:#fff}
+.prof ul{list-style:none;margin:0;padding:0}
+.prof li{padding:4px 0;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.prof li::before{content:"•";color:var(--brass);font-weight:700}
+/* word search */
+.ws{display:grid;gap:4px;overflow-x:auto;padding:6px 0;user-select:none}
+.ws .wr{display:flex;gap:2px}
+.ws .l{width:19px;height:28px;display:grid;place-items:center;font:700 14px "Courier Prime";border-radius:5px;background:#fffdf7;border:1px solid #eadbbd;cursor:pointer;flex:none}
+.ws .l.sel1{background:var(--brass2)}
+.ws .l.found{background:var(--wine);color:#fbeed6;border-color:var(--wine)}
+.found-list{display:flex;gap:6px;flex-wrap:wrap}
+.found-list .chip.got{background:var(--wine);color:#fbeed6;border-color:var(--wine)}
+/* matching */
+.match{display:grid;grid-template-columns:1fr auto;gap:6px 14px;align-items:center}
+.match .opts{display:flex;gap:4px}
+.match .opts button{width:32px;height:32px;border-radius:50%;border:1.5px solid var(--line);background:#fff;font:700 14px "Courier Prime"}
+.match .opts button.on{background:var(--wine);color:#fbeed6;border-color:var(--wine)}
+.match .opts button.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+.match .opts button.bad{background:var(--bad);border-color:var(--bad);color:#fff}
+.rhs{margin-top:10px;display:grid;gap:4px;font-size:16px;background:#fbf3e3;border-radius:10px;padding:10px 14px}
+.rhs b{font-family:"Courier Prime";color:var(--wine)}
+/* texts choice */
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.note{border-radius:6px;padding:14px 16px;font-size:16px;cursor:pointer;border:2px solid transparent;box-shadow:0 6px 14px -8px rgba(0,0,0,.4)}
+.note:nth-child(1){background:#e7f0d8;transform:rotate(-1deg)}
+.note:nth-child(2){background:#fdf3c8;transform:rotate(1deg)}
+.note:nth-child(3){background:#f9dcc0;transform:rotate(-.6deg)}
+.note.on{border-color:var(--wine)}
+.note.ok{border-color:var(--ok);outline:3px solid rgba(47,125,74,.3)}
+.note.bad{border-color:var(--bad)}
+/* order */
+.order li{cursor:pointer}
+.order .slot{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font:700 14px "Courier Prime";background:#fff;flex:none}
+.order li.picked .slot{background:var(--wine);color:#fbeed6;border-color:var(--wine)}
+.code{display:flex;gap:4px;margin-top:10px}
+.code div{width:42px;height:48px;border:2px solid var(--wine);border-radius:8px;display:grid;place-items:center;font:700 24px "Courier Prime";background:#fff}
+.code div.ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+/* checklist */
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:6px 20px}
+.checks label{display:flex;gap:8px;align-items:center;padding:6px 8px;border-radius:8px;cursor:pointer}
+.checks label.ok{background:#e5f3e9}.checks label.bad{background:#fbe5e2}
+.checks input{width:20px;height:20px;accent-color:var(--wine)}
+.bank{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0;padding:10px;background:#fbf3e3;border-radius:10px}
+.bank button{border:1.5px dashed var(--wine);background:#fff;border-radius:8px;padding:4px 10px}
+.bank button.used{opacity:.35}
+/* opinion builder */
+.opgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.opcol h4{margin:0 0 6px;font-family:"Young Serif";font-weight:400;font-size:18px}
+.opcol button{display:block;width:100%;text-align:left;margin:4px 0;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:6px 10px;font-size:16px}
+.opcol button.on{border-color:var(--wine);background:#f6e3e0}
+.speech{margin-top:12px;background:#fff;border:2px solid var(--ink);border-radius:30px;padding:14px 20px;font-size:20px;min-height:58px;position:relative}
+.speech::after{content:"";position:absolute;left:40px;bottom:-14px;border:12px solid transparent;border-top-color:var(--ink);border-bottom:0}
+
+/* games */
+.gamebar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.memory{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.mem{height:90px;border-radius:12px;border:0;background:var(--wine);color:transparent;font-size:17px;font-weight:700;padding:6px;transition:transform .3s,background .3s;position:relative}
+.mem::after{content:"?";position:absolute;inset:0;display:grid;place-items:center;color:var(--brass2);font:400 30px "Young Serif"}
+.mem.open,.mem.done{background:#fff;color:var(--ink);border:2px solid var(--brass)}
+.mem.open::after,.mem.done::after{content:none}
+.mem.done{background:#e5f3e9;border-color:var(--ok)}
+.artgame{text-align:center;padding:20px}
+.artgame .word{font-family:"Young Serif";font-size:44px;margin:10px 0}
+.artgame .abtn{font:700 22px "Atkinson Hyperlegible";border:0;border-radius:14px;padding:14px 28px;color:#fff;margin:6px}
+.timer{height:8px;background:#eadbbd;border-radius:5px;overflow:hidden;margin:10px auto;max-width:420px}
+.timer i{display:block;height:100%;background:var(--wine);width:100%}
+.big{font-size:22px}
+.choices{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+.choices button{border:2px solid var(--line);background:#fff;border-radius:14px;padding:10px 16px;display:flex;align-items:center;gap:8px;font-weight:700}
+.choices button.ok{border-color:var(--ok);background:#e5f3e9}
+.choices button.bad{border-color:var(--bad);background:#fbe5e2}
+.puzzle .tray,.puzzle .out{display:flex;flex-wrap:wrap;gap:8px;min-height:52px;padding:10px;border-radius:12px}
+.puzzle .out{background:#fff;border:2px dashed var(--line)}
+.puzzle .tray{background:#fbf3e3}
+.puzzle button{border:1.5px solid var(--wine);background:#fff;border-radius:10px;padding:7px 12px;font-size:18px}
+.puzzle .out button{background:var(--wine);color:#fbeed6}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(120px);background:#2a1f1c;color:#f6e9d0;padding:12px 20px;border-radius:30px;border:1px solid var(--brass);z-index:70;transition:transform .35s;display:flex;gap:10px;align-items:center}
+.toast.on{transform:translateX(-50%) translateY(0)}
+footer{text-align:center;color:var(--ink2);font-size:13px;padding:30px 10px}
+@media (max-width:860px){
+  .hero,.reader,.gbox,.opgrid{grid-template-columns:1fr}
+  .side{position:static}
+  .s{grid-template-columns:1fr 34px}
+  .s .who{grid-column:1/-1;text-align:left;padding:0}
+  .hero h1{font-size:34px}
+  header{position:static}
+  .player{top:6px}
+  .side{display:none}
+  .checks{grid-template-columns:1fr}
+  .prof{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="hwrap">
+    <div class="brand"><div class="crest">S</div><div><b>Hotel Sommer</b><small lang="de">Geheimnis im Hotel · A1</small></div></div>
+    <div class="coins" title="Topladığın altın sikkeler – müzeden kaybolan 120 sikkeyi bulabilecek misin?"><div class="coin" id="coinIco">€</div><div class="n"><span id="coinN">0</span> <small>/ 120 Münzen</small></div></div>
+  </div>
+  <nav class="keys" id="nav">
+    <a href="#lobby" data-v="lobby">Lobi<span class="rn">000</span></a>
+    <a href="#lesen" data-v="lesen">Okuma Salonu<span class="rn">101</span></a>
+    <a href="#woerter" data-v="woerter">Kelimeler<span class="rn">102</span></a>
+    <a href="#grammatik" data-v="grammatik">Dil Bilgisi<span class="rn">103</span></a>
+    <a href="#aufgaben" data-v="aufgaben">Çalışma Kâğıdı<span class="rn">104</span></a>
+    <a href="#spiele" data-v="spiele">Oyun Odası<span class="rn">105</span></a>
+  </nav>
+</header>
+
+<main>
+<!-- LOBBY -->
+<section class="view" id="v-lobby">
+  <div class="hero stagger">
+    <div class="ticket">
+      <div class="mono" style="letter-spacing:2px;font-size:13px;color:var(--brass2)">BESTE FREUNDE A1 · LESEHEFT</div>
+      <h1>Geheimnis im Hotel</h1>
+      <p>Laura Viyana'dan dönüyor, Simon tatilde amcasının otelinde çalışıyor… ve Münih'teki sikke müzesinden 120 altın sikke kayboluyor. Hikâyeyi sesli dinle, bilmediğin kelimeye dokun, Türkçesini gör.</p>
+      <div id="cast" style="display:flex;gap:6px;flex-wrap:wrap;margin:16px 0 4px"></div>
+      <div class="row" style="margin-top:14px"><a class="btn brass" href="#lesen" style="text-decoration:none">Okumaya başla →</a><a class="btn ghost" href="#aufgaben" style="text-decoration:none;color:#fbeed6;border-color:#fbeed6">Çalışma kâğıdı</a></div>
+    </div>
+    <div class="card">
+      <h3 style="font-size:22px">Nasıl çalışalım?</h3>
+      <ol class="steps">
+        <li><b>Dinle ve oku:</b> Bölümü önce sesle birlikte oku. Çalan cümle sarı yanar.</li>
+        <li><b>Kelimeye dokun:</b> Altı noktalı her kelimenin Türkçesi ve okunuşu açılır.</li>
+        <li><b>Cümle cümle:</b> “Cümlede dur” açıkken ses her cümleden sonra bekler — tekrar et!</li>
+        <li><b>Dil bilgisi:</b> Kitaptaki yapıları kitaptan örneklerle dene.</li>
+        <li><b>Çalışma kâğıdı:</b> Cevabını yaz, “Kontrol et”e bas, sikkeleri topla.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="tiles stagger" id="lobbyTiles"></div>
+  <div class="card" style="margin-top:20px">
+    <div class="row"><b>Öğrenci:</b>
+      <input class="blank" id="stName" placeholder="Name / Adı">
+      <input class="blank" id="stSur" placeholder="Nachname / Soyadı">
+      <input class="blank" id="stKl" placeholder="Klasse" style="min-width:80px;width:90px">
+      <input class="blank" id="stNr" placeholder="Schulnr." style="min-width:80px;width:100px">
+    </div>
+    <p class="muted" style="margin:8px 0 0">Bilgiler ve cevaplar yalnızca bu tarayıcıda saklanır. Çalışma kâğıdının sonunda “Sonuçları kopyala” ile öğretmene gönderebilirsin.</p>
+  </div>
+</section>
+
+<!-- READER -->
+<section class="view" id="v-lesen">
+  <div class="chapters" id="chapTabs"></div>
+  <div class="player" id="player">
+    <button class="play" id="pPlay" aria-label="Oynat">▶</button>
+    <div class="bar" id="pBar"><i id="pFill"></i></div>
+    <span class="t" id="pTime">0:00 / 0:00</span>
+    <select id="pRate" title="Hız"><option value="0.75">0,75×</option><option value="0.9">0,9×</option><option value="1" selected>1×</option><option value="1.15">1,15×</option></select>
+    <button class="tg" id="pStop" title="Her cümleden sonra dur">⏸ Cümlede dur</button>
+    <button class="tg" id="pTr" title="Tüm çevirileri göster">TR çeviri</button>
+  </div>
+  <div class="reader">
+    <article class="page" id="page"></article>
+    <aside class="side">
+      <div class="card"><h3>Bu bölümün kelimeleri</h3><div class="chipset" id="chapWords"></div><p class="muted" style="margin:8px 0 0">Kelimeye dokun → metinde yerini gösterir ve okur.</p></div>
+      <div class="card"><h3>İpucu</h3><p class="muted" style="margin:0" id="chapTip"></p></div>
+    </aside>
+  </div>
+</section>
+
+<!-- VOCAB -->
+<section class="view" id="v-woerter">
+  <h2 style="font-size:32px">Kelime Dolabı</h2>
+  <p class="lead">Renkler artikeli gösterir: <span class="art-der">der</span> (eril) · <span class="art-die">die</span> (dişil) · <span class="art-das">das</span> (nötr). İsimleri hep artikeliyle öğren!</p>
+  <div class="row" style="margin:12px 0"><span class="muted">Bölüm:</span><span id="vFilter" class="row"></span>
+    <input class="blank" id="vSearch" placeholder="Ara… (Almanca / Türkçe)"></div>
+  <div class="card" style="margin-bottom:16px">
+    <div class="row"><h3 style="margin:0">Kelime kartları</h3><span class="muted" id="fcInfo"></span></div>
+    <div class="flash-wrap"><div class="fcard" id="fcard"><div class="f" id="fcF"></div><div class="b" id="fcB"></div></div></div>
+    <div class="row" style="justify-content:center"><button class="btn ghost sm" id="fcSay">🔊 Dinle</button><button class="btn ghost sm" id="fcFlip">Çevir</button><button class="btn sm" id="fcAgain">Tekrar sor</button><button class="btn brass sm" id="fcKnow">Biliyorum ✓</button></div>
+  </div>
+  <div class="vgrid" id="vGrid"></div>
+</section>
+
+<!-- GRAMMAR -->
+<section class="view" id="v-grammatik">
+  <h2 style="font-size:32px">Dil Bilgisi Atölyesi</h2>
+  <p class="lead">Bu bölümlerde kitapta geçen yapılar var. Her konuda önce kısa kural, kitaptan örnek (🔊 ile orijinal sesten dinle), sonra alıştırma.</p>
+  <div class="gnav" id="gNav"></div>
+  <div id="gBody"></div>
+</section>
+
+<!-- WORKSHEET -->
+<section class="view" id="v-aufgaben">
+  <div class="card" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+    <div style="flex:1;min-width:240px"><div class="mono" style="color:var(--wine);font-weight:700">1. FERIENAKTIVITÄT · 12.11.–22.11.2026 · 5. KLASSE</div>
+      <h2 style="margin:4px 0;font-size:30px">Geheimnis im Hotel – Aufgaben</h2>
+      <p class="muted" style="margin:0">Lies die Lektüre durch und mach die Aufgaben. (Kitabı oku ve görevleri yap.) Cevap yaz → <b>Kontrol et</b>. Takılırsan <b>İpucu</b>.</p></div>
+    <div style="text-align:center"><div class="mono" style="font-size:40px;color:var(--wine)" id="wsScore">0%</div><div class="muted">tamamlandı</div></div>
+  </div>
+  <div id="wsBody"></div>
+  <div class="card" style="margin-top:24px">
+    <h3>Bitti mi?</h3>
+    <p class="muted">Sonuçlarını kopyalayıp öğretmenine mesajla gönderebilirsin.</p>
+    <div class="row"><button class="btn" id="copyRes">Sonuçları kopyala</button><button class="btn ghost" id="resetWs">Kâğıdı sıfırla</button></div>
+    <pre id="resOut" class="mono" style="white-space:pre-wrap;font-size:14px;display:none;background:#fbf3e3;padding:12px;border-radius:10px"></pre>
+  </div>
+</section>
+
+<!-- GAMES -->
+<section class="view" id="v-spiele">
+  <h2 style="font-size:32px">Oyun Odası</h2>
+  <p class="lead">Her doğru cevap bir altın sikke kazandırır.</p>
+  <div class="gamebar" id="gameBar"></div>
+  <div class="card" id="gameBox"></div>
+</section>
+</main>
+<footer>Metin ve ses: Beste Freunde A1 Leseheft „Geheimnis im Hotel“, © Hueber Verlag — yalnızca sınıf içi çalışma için. Türkçe çeviriler ve alıştırmalar yardımcı amaçlıdır.</footer>
+
+<div id="pop"></div>
+<div class="toast" id="toast"><div class="coin">€</div><span id="toastT"></span></div>
+<audio id="aud" preload="metadata"></audio>
+
+<script>
+const DATA = {"chapters": [{"n": 0, "de": "Die Personen", "tr": "Kişiler", "audio": "k1.mp3", "items": [{"t": "@", "sp": "Laura"}, {"t": "N", "sp": "Laura", "de": "Sie ist zwölf und lebt in München.", "tr": "On iki yaşında ve Münih'te yaşıyor.", "a": 15.05, "b": 18.28}, {"t": "N", "sp": "Laura", "de": "Jetzt sind Sommerferien und sie war fünf Tage bei ihrer Cousine Kati in Wien.", "tr": "Şimdi yaz tatili ve beş gün Viyana'da kuzeni Kati'nin yanındaydı.", "a": 19.09, "b": 24.96}, {"t": "@", "sp": "Simon"}, {"t": "N", "sp": "Simon", "de": "Er möchte zu einem Spiel von Manchester United fahren und braucht Geld.", "tr": "Bir Manchester United maçına gitmek istiyor ve paraya ihtiyacı var.", "a": 26.49, "b": 33.64}, {"t": "N", "sp": "Simon", "de": "Deshalb hilft er in den Ferien seinem Onkel im Hotel.", "tr": "Bu yüzden tatilde otelde amcasına yardım ediyor.", "a": 34.45, "b": 38.18}, {"t": "N", "sp": "Simon", "de": "Das darf er jetzt, im Mai hatte er Geburtstag und ist jetzt 13.", "tr": "Artık buna izni var; mayısta doğum günüydü ve şimdi 13 yaşında.", "a": 38.81, "b": 43.38}, {"t": "N", "sp": "Simon", "de": "Er ist der beste Freund von Laura.", "tr": "Laura'nın en iyi arkadaşı.", "a": 44.25, "b": 46.56}, {"t": "@", "sp": "Kati"}, {"t": "N", "sp": "Kati", "de": "Sie ist die Cousine von Laura.", "tr": "Laura'nın kuzeni.", "a": 49.23, "b": 51.68}, {"t": "N", "sp": "Kati", "de": "Sie ist elf Jahre alt und ihr Hobby ist Mode.", "tr": "On bir yaşında ve hobisi moda.", "a": 52.45, "b": 56.2}, {"t": "N", "sp": "Kati", "de": "Laura besucht Kati oft und Kati war auch schon oft in München.", "tr": "Laura Kati'yi sık sık ziyaret eder, Kati de Münih'e çok kez geldi.", "a": 56.87, "b": 62.4}, {"t": "@", "sp": "Sven"}, {"t": "N", "sp": "Sven", "de": "Er ist der Onkel von Simon und arbeitet im Hotel Sommer an der Rezeption.", "tr": "Simon'un amcası; Hotel Sommer'de resepsiyonda çalışıyor.", "a": 64.71, "b": 71.02}, {"t": "@", "sp": "Moritz"}, {"t": "N", "sp": "Moritz", "de": "Er ist 17 und spielt Gitarre.", "tr": "17 yaşında ve gitar çalıyor.", "a": 73.61, "b": 76.96}, {"t": "N", "sp": "Moritz", "de": "Er möchte in London leben und dort auf die Royal Academy of Music gehen.", "tr": "Londra'da yaşamak ve orada Royal Academy of Music'e gitmek istiyor.", "a": 77.51, "b": 83.3}, {"t": "@", "sp": "Breuer"}, {"t": "N", "sp": "Breuer", "de": "Er ist der Opa von Moritz und schon sehr alt.", "tr": "Moritz'in dedesi ve artık çok yaşlı.", "a": 85.99, "b": 90.26}, {"t": "N", "sp": "Breuer", "de": "Er liebt Moritz sehr.", "tr": "Moritz'i çok seviyor.", "a": 90.59, "b": 92.2}, {"t": "@", "sp": "Clarissa"}, {"t": "N", "sp": "Clarissa", "de": "Sie ist 18 und möchte auf die sehr gute Modeschule MODE-Kreation gehen.", "tr": "18 yaşında ve çok iyi bir moda okulu olan MODE-Kreation'a gitmek istiyor.", "a": 95.51, "b": 101.76}, {"t": "@", "sp": "Moser"}, {"t": "N", "sp": "Moser", "de": "Er kennt Simons Onkel schon sehr lange.", "tr": "Simon'un amcasını çok uzun zamandır tanıyor.", "a": 104.13, "b": 108.0}, {"t": "N", "sp": "Moser", "de": "Sie sind Freunde.", "tr": "Onlar arkadaş.", "a": 108.37, "b": 109.7}, {"t": "N", "sp": "Moser", "de": "In einem Hotel kann es manchmal Probleme geben und dann hilft er seinem Freund Sven immer gern.", "tr": "Bir otelde bazen sorunlar çıkabilir, o zaman arkadaşı Sven'e her zaman seve seve yardım eder.", "a": 109.35, "b": 116.78}]}, {"n": 1, "de": "Laura kommt zurück", "tr": "Laura geri dönüyor", "audio": "k1.mp3", "items": [{"t": "T", "sp": "", "de": "Laura kommt zurück.", "tr": "Laura geri dönüyor.", "a": 119.65, "b": 122.44}, {"t": "N", "sp": "Simon", "de": "Donnerstag. Heute kommt Laura aus Wien zurück.", "tr": "Perşembe. Bugün Laura Viyana'dan dönüyor.", "a": 122.85, "b": 126.58}, {"t": "C", "sp": "Simon", "de": "Hi, Laura! Bist du da?", "tr": "Selam Laura! Orada mısın?", "a": 128.33, "b": 130.82}, {"t": "C", "sp": "Laura", "de": "Ja, hallo Simon! Wie geht's?", "tr": "Evet, merhaba Simon! Nasılsın?", "a": 133.49, "b": 136.42}, {"t": "C", "sp": "Simon", "de": "Holt dich deine Mutter vom Bahnhof ab?", "tr": "Annen seni istasyondan alıyor mu?", "a": 138.61, "b": 141.18}, {"t": "C", "sp": "Laura", "de": "Nein, leider nicht. Sie arbeitet.", "tr": "Hayır, maalesef almıyor. Çalışıyor.", "a": 143.41, "b": 146.18}, {"t": "C", "sp": "Simon", "de": "Dann komme ich.", "tr": "O zaman ben gelirim.", "a": 148.61, "b": 150.0}, {"t": "C", "sp": "Laura", "de": "Toll!!! 😊", "tr": "Harika!!! 😊", "a": 152.35, "b": 153.4}, {"t": "C", "sp": "Simon", "de": "Wann kommt dein Zug an?", "tr": "Trenin ne zaman varıyor?", "a": 155.59, "b": 157.58}, {"t": "C", "sp": "Laura", "de": "Um 18:12 Uhr. Am Ostbahnhof.", "tr": "Saat 18:12'de. Ostbahnhof'ta (Doğu Garı).", "a": 159.37, "b": 162.52}, {"t": "C", "sp": "Simon", "de": "O.k. Ich bin dann da.", "tr": "Tamam. O zaman orada olurum.", "a": 165.37, "b": 166.4}]}, {"n": 2, "de": "Im Eiscafé", "tr": "Dondurmacıda", "audio": "k2.mp3", "items": [{"t": "T", "sp": "", "de": "Im Eiscafé.", "tr": "Dondurmacıda.", "a": 1.99, "b": 3.62}, {"t": "N", "sp": "", "de": "Simon holt Laura am Bahnhof ab.", "tr": "Simon, Laura'yı istasyondan alıyor.", "a": 5.57, "b": 8.22}, {"t": "N", "sp": "", "de": "Laura möchte nicht sofort nach Hause fahren, sie möchte ein Eis essen und sie gehen in ein Eiscafé.", "tr": "Laura hemen eve gitmek istemiyor; dondurma yemek istiyor ve bir dondurmacıya gidiyorlar.", "a": 8.61, "b": 15.34}, {"t": "N", "sp": "", "de": "Laura erzählt ein bisschen von Wien.", "tr": "Laura biraz Viyana'yı anlatıyor.", "a": 17.03, "b": 20.1}, {"t": "N", "sp": "", "de": "Sie haben nicht viel gemacht, Kati war krank.", "tr": "Pek bir şey yapmamışlar, Kati hastaymış.", "a": 20.87, "b": 24.48}, {"t": "N", "sp": "", "de": "Und Simon erzählt vom Hotel.", "tr": "Simon da oteli anlatıyor.", "a": 25.07, "b": 27.86}, {"t": "N", "sp": "", "de": "Es ist ein kleines Hotel, aber es gibt dort auch Gäste aus Amerika, Kanada und England.", "tr": "Küçük bir otel ama orada Amerika, Kanada ve İngiltere'den misafirler de var.", "a": 28.37, "b": 35.5}, {"t": "N", "sp": "", "de": "Mit ihnen kann er Englisch sprechen und das findet er toll.", "tr": "Onlarla İngilizce konuşabiliyor ve bunu harika buluyor.", "a": 36.21, "b": 40.18}, {"t": "D", "sp": "Simon", "de": "Warum kommst du nicht morgen ins Hotel?", "tr": "Neden yarın otele gelmiyorsun?", "a": 45.71, "b": 48.08}, {"t": "D", "sp": "Simon", "de": "Dann kann ich dir alles zeigen.", "tr": "O zaman sana her şeyi gösterebilirim.", "a": 48.49, "b": 50.36}, {"t": "D", "sp": "Simon", "de": "Und du kannst auch meinen Onkel Sven kennenlernen.", "tr": "Amcam Sven'le de tanışabilirsin.", "a": 50.01, "b": 53.14}, {"t": "D", "sp": "Simon", "de": "Oder hast du keine Zeit? Oder keine Lust?", "tr": "Yoksa vaktin mi yok? Ya da canın mı istemiyor?", "a": 53.25, "b": 56.14}, {"t": "D", "sp": "Laura", "de": "Doch, doch. Ich komme gerne, aber ich möchte nicht so früh aufstehen.", "tr": "Yok yok, gelirim tabii! Seve seve gelirim ama çok erken kalkmak istemiyorum.", "a": 56.51, "b": 60.28}, {"t": "D", "sp": "Laura", "de": "Vielleicht um elf?", "tr": "Belki saat on birde?", "a": 60.73, "b": 61.84}, {"t": "D", "sp": "Simon", "de": "Super. Das Hotel ist in der Ringstraße 53.", "tr": "Süper. Otel Ringstraße 53'te.", "a": 62.03, "b": 65.46}, {"t": "D", "sp": "Simon", "de": "Da kannst du mit dem Bus Nummer 22 fahren. Das ist einfach.", "tr": "Oraya 22 numaralı otobüsle gidebilirsin. Çok kolay.", "a": 65.95, "b": 70.0}, {"t": "D", "sp": "Laura", "de": "O.k. So, jetzt muss ich aber nach Hause.", "tr": "Tamam. Eh, şimdi artık eve gitmem lazım.", "a": 71.71, "b": 73.74}, {"t": "D", "sp": "Laura", "de": "Kommst du mit? Ich habe doch die zwei großen Taschen.", "tr": "Benimle gelir misin? Baksana iki büyük çantam var.", "a": 73.87, "b": 76.88}, {"t": "D", "sp": "Simon", "de": "Na klar. Komm, gehen wir.", "tr": "Elbette. Hadi, gidelim.", "a": 77.25, "b": 79.38}]}, {"n": 3, "de": "Freitagmorgen im Hotel", "tr": "Otelde cuma sabahı", "audio": "k3.mp3", "items": [{"t": "T", "sp": "", "de": "Freitagmorgen im Hotel.", "tr": "Otelde cuma sabahı.", "a": 2.97, "b": 4.54}, {"t": "D", "sp": "Simon", "de": "Hallo, Laura. Das ist mein Onkel Sven.", "tr": "Merhaba Laura. Bu amcam Sven.", "a": 8.91, "b": 12.1}, {"t": "D", "sp": "Simon", "de": "Er arbeitet schon zehn Jahre hier im Hotel Sommer.", "tr": "On yıldır burada, Hotel Sommer'de çalışıyor.", "a": 12.43, "b": 15.32}, {"t": "D", "sp": "Laura", "de": "Guten Tag, Herr …", "tr": "İyi günler, Bay …", "a": 15.79, "b": 17.1}, {"t": "D", "sp": "Sven", "de": "Wagner. Aber du kannst Sven und „Du“ sagen.", "tr": "Wagner. Ama bana Sven diyebilir ve „sen“ diye hitap edebilirsin.", "a": 17.09, "b": 20.94}, {"t": "D", "sp": "Sven", "de": "So alt bin ich ja noch nicht!", "tr": "O kadar da yaşlı değilim henüz!", "a": 21.33, "b": 23.3}, {"t": "D", "sp": "Laura", "de": "O.k., Sven. Habt ihr viele Gäste?", "tr": "Tamam Sven. Çok misafiriniz var mı?", "a": 24.33, "b": 26.5}, {"t": "D", "sp": "Sven", "de": "Ja, im Sommer immer.", "tr": "Evet, yazın hep olur.", "a": 26.87, "b": 28.94}, {"t": "D", "sp": "Sven", "de": "Aber jetzt haben sie schon alle gefrühstückt und viele sind in der Stadt.", "tr": "Ama şimdi hepsi kahvaltısını yaptı ve birçoğu şehirde.", "a": 29.49, "b": 33.48}, {"t": "D", "sp": "Sven", "de": "Da im Hotel-Café sitzt nur noch Mister Brown. Aus New York.", "tr": "Şurada, otel kafesinde sadece Mister Brown oturuyor. New York'tan.", "a": 34.27, "b": 39.12}, {"t": "D", "sp": "Sven", "de": "Er ist schon 70, aber er kommt jedes Jahr.", "tr": "70 yaşında ama her yıl gelir.", "a": 39.87, "b": 43.48}, {"t": "D", "sp": "Sven", "de": "Simon geht jeden Tag mit seinem Hund spazieren.", "tr": "Simon her gün onun köpeğini yürüyüşe çıkarır.", "a": 44.25, "b": 47.26}, {"t": "D", "sp": "Sven", "de": "Ja, und hier ist auch Moritz! Hallo Moritz, wie geht's?", "tr": "Ha, işte Moritz de burada! Merhaba Moritz, nasılsın?", "a": 48.89, "b": 53.36}, {"t": "D", "sp": "Moritz", "de": "Guten Morgen, Herr Wagner, hallo Simon.", "tr": "Günaydın Bay Wagner, merhaba Simon.", "a": 53.75, "b": 56.36}, {"t": "D", "sp": "Moritz", "de": "Kann ich den Schlüssel für die Bar haben?", "tr": "Barın anahtarını alabilir miyim?", "a": 56.63, "b": 58.58}, {"t": "D", "sp": "Sven", "de": "Na klar! Hier ist der Schlüssel.", "tr": "Elbette! Buyur anahtar.", "a": 59.01, "b": 61.28}, {"t": "D", "sp": "Sven", "de": "Und das hier ist Laura, eine Freundin von Simon.", "tr": "Bu da Laura, Simon'un bir arkadaşı.", "a": 62.09, "b": 65.68}, {"t": "D", "sp": "Laura", "de": "Hi. Eh, was machst du denn um elf Uhr mit der Gitarre in der Bar?", "tr": "Selam. Eee, saat on birde barda gitarla ne yapıyorsun?", "a": 66.19, "b": 70.52}, {"t": "D", "sp": "Moritz", "de": "Ich übe.", "tr": "Çalışıyorum (alıştırma yapıyorum).", "a": 70.95, "b": 72.08}, {"t": "D", "sp": "Laura", "de": "Oh, Gitarre finde ich toll. Darf ich vielleicht mal zuhören?", "tr": "Ah, gitarı çok severim. Biraz dinleyebilir miyim acaba?", "a": 72.37, "b": 76.26}, {"t": "D", "sp": "Moritz", "de": "Natürlich, kein Problem. Ich übe bis um zwölf. Tschüss dann.", "tr": "Tabii ki, sorun değil. On ikiye kadar çalışıyorum. Görüşürüz o zaman.", "a": 76.53, "b": 81.48}, {"t": "D", "sp": "Laura", "de": "Simon, übt Moritz jeden Tag? Erzähl mal.", "tr": "Simon, Moritz her gün çalışıyor mu? Anlatsana.", "a": 81.13, "b": 85.54}, {"t": "N", "sp": "", "de": "Simon findet Moritz langweilig.", "tr": "Simon, Moritz'i sıkıcı buluyor.", "a": 86.73, "b": 89.38}, {"t": "N", "sp": "", "de": "Moritz ist am Dienstag zusammen mit seinem Opa, Herrn Breuer, ins Hotel gekommen.", "tr": "Moritz salı günü dedesi Bay Breuer'le birlikte otele geldi.", "a": 89.95, "b": 95.96}, {"t": "N", "sp": "", "de": "Er ist 17 Jahre alt, aber jeden Tag übt er nur Gitarre oder geht mit seinem Opa spazieren.", "tr": "17 yaşında ama her gün sadece gitar çalışıyor ya da dedesiyle yürüyüşe çıkıyor.", "a": 96.79, "b": 104.24}, {"t": "N", "sp": "", "de": "Und etwas ist komisch: Moritz will auf die Royal Academy of Music in London.", "tr": "Bir de tuhaf bir şey var: Moritz Londra'daki Royal Academy of Music'e gitmek istiyor.", "a": 103.89, "b": 111.94}, {"t": "N", "sp": "", "de": "Die ist teuer.", "tr": "Orası pahalı.", "a": 112.59, "b": 113.74}, {"t": "N", "sp": "", "de": "Aber Moritz und sein Opa haben nur wenig Geld.", "tr": "Ama Moritz ile dedesinin çok az parası var.", "a": 114.47, "b": 117.66}, {"t": "N", "sp": "", "de": "Sie haben ein billiges Zimmer, Moritz hat ein total altes Handy und sie essen nie im Restaurant.", "tr": "Ucuz bir odaları var, Moritz'in telefonu çok eski ve hiç restoranda yemek yemiyorlar.", "a": 118.23, "b": 125.48}, {"t": "D", "sp": "Laura", "de": "Mit 17 an die Royal Academy of Music? Dann muss er aber sehr gut sein!", "tr": "17 yaşında Royal Academy of Music'e mi? O zaman çok iyi olmalı!", "a": 128.29, "b": 133.88}, {"t": "D", "sp": "Sven", "de": "Simon, Opa Breuer ist am Telefon.", "tr": "Simon, Breuer dede telefonda.", "a": 134.63, "b": 137.38}, {"t": "D", "sp": "Sven", "de": "Kannst du seine Jacke abholen und in die Reinigung bringen? Zimmer 104.", "tr": "Ceketini alıp kuru temizlemeciye götürebilir misin? Oda 104.", "a": 138.23, "b": 143.96}, {"t": "D", "sp": "Simon", "de": "Ja, sofort.", "tr": "Evet, hemen.", "a": 144.67, "b": 145.82}, {"t": "D", "sp": "Sven", "de": "Ja, Herr Breuer, Simon kommt sofort.", "tr": "Evet Bay Breuer, Simon hemen geliyor.", "a": 146.45, "b": 149.2}, {"t": "D", "sp": "Laura", "de": "Ich komme mit. Ich möchte Opa Breuer kennenlernen.", "tr": "Ben de geliyorum. Breuer dedeyle tanışmak istiyorum.", "a": 149.65, "b": 153.22}, {"t": "N", "sp": "", "de": "Simon und Laura gehen zu Opa Breuer in Zimmer 104.", "tr": "Simon ve Laura 104 numaralı odaya, Breuer dedenin yanına gidiyorlar.", "a": 160.95, "b": 165.78}, {"t": "N", "sp": "", "de": "Sie holen die Jacke ab. Laura findet Opa Breuer sehr nett.", "tr": "Ceketi alıyorlar. Laura, Breuer dedeyi çok sevimli buluyor.", "a": 166.33, "b": 171.2}, {"t": "D", "sp": "Laura", "de": "Simon, ich finde, du bist komisch. Ich verstehe dich wirklich nicht.", "tr": "Simon, bence sen tuhafsın. Seni gerçekten anlamıyorum.", "a": 173.67, "b": 178.42}, {"t": "D", "sp": "Laura", "de": "Opa Breuer ist sehr nett und Moritz auch.", "tr": "Breuer dede çok sevimli, Moritz de öyle.", "a": 178.63, "b": 181.6}, {"t": "D", "sp": "Laura", "de": "Gehen wir jetzt zur Reinigung? Nehmen wir den Bus?", "tr": "Şimdi temizlemeciye mi gidiyoruz? Otobüse mi binelim?", "a": 181.25, "b": 184.74}, {"t": "D", "sp": "Simon", "de": "Nein, es sind nur 20 Minuten zu Fuß.", "tr": "Hayır, yürüyerek sadece 20 dakika.", "a": 185.43, "b": 188.38}]}, {"n": 4, "de": "Die Goldmünzen", "tr": "Altın sikkeler", "audio": "k4.mp3", "items": [{"t": "T", "sp": "", "de": "Die Goldmünzen.", "tr": "Altın sikkeler.", "a": 2.61, "b": 3.88}, {"t": "D", "sp": "Simon", "de": "Laura, kannst du mal eine Minute warten?", "tr": "Laura, bir dakika bekleyebilir misin?", "a": 10.95, "b": 13.86}, {"t": "D", "sp": "Simon", "de": "Ich will Onkel Sven anrufen.", "tr": "Sven amcamı aramak istiyorum.", "a": 14.19, "b": 15.84}, {"t": "D", "sp": "Simon", "de": "Vielleicht möchte er ja eine Zeitung vom Kiosk.", "tr": "Belki büfeden bir gazete ister.", "a": 16.45, "b": 19.2}, {"t": "D", "sp": "Simon", "de": "Hier, halte mal die Jacke.", "tr": "Al, şu ceketi bir tut.", "a": 19.31, "b": 21.02}, {"t": "D", "sp": "Laura", "de": "Ja, kein Problem.", "tr": "Tamam, sorun değil.", "a": 22.01, "b": 23.5}, {"t": "S", "sp": "", "de": "Kling! Klong!", "tr": "Çın! Çın!", "a": 23.2, "b": 24.25}, {"t": "D", "sp": "Laura", "de": "Och, was ist denn das?", "tr": "Aa, bu da ne?", "a": 23.95, "b": 25.86}, {"t": "D", "sp": "Simon", "de": "Das sind Münzen. Goldmünzen. In Opa Breuers Jacke!", "tr": "Bunlar sikke. Altın sikkeler. Breuer dedenin ceketinde!", "a": 25.51, "b": 31.02}, {"t": "D", "sp": "Simon", "de": "Woher hat denn Opa Breuer die Münzen?", "tr": "Breuer dede bu sikkeleri nereden bulmuş?", "a": 31.21, "b": 33.48}, {"t": "D", "sp": "Laura", "de": "Das ist doch egal! Das sind Opa Breuers Münzen.", "tr": "Ne fark eder ki! Bunlar Breuer dedenin sikkeleri.", "a": 33.71, "b": 37.0}, {"t": "D", "sp": "Laura", "de": "Im Hotel müssen wir sie ihm sofort zurückgeben.", "tr": "Otelde onları hemen ona geri vermeliyiz.", "a": 37.05, "b": 39.74}, {"t": "D", "sp": "Laura", "de": "Rufst du jetzt Sven an?", "tr": "Şimdi Sven'i arıyor musun?", "a": 39.89, "b": 41.38}, {"t": "D", "sp": "Simon", "de": "Ach ja, richtig.", "tr": "Ha evet, doğru.", "a": 41.69, "b": 42.62}, {"t": "P", "sp": "Simon", "de": "Onkel Sven? Ja, es ist alles o.k. Willst du eine Zeitung vom Kiosk? O.k. Tschüss.", "tr": "Sven amca? Evet, her şey yolunda. Büfeden gazete ister misin? Tamam. Görüşürüz.", "a": 47.53, "b": 57.0}, {"t": "D", "sp": "Simon", "de": "Also ja, Onkel Sven möchte eine Zeitung.", "tr": "Evet, Sven amca bir gazete istiyor.", "a": 58.03, "b": 61.02}, {"t": "N", "sp": "", "de": "Simon und Laura bringen die Jacke zur Reinigung.", "tr": "Simon ve Laura ceketi temizlemeciye götürüyorlar.", "a": 64.83, "b": 68.36}, {"t": "N", "sp": "", "de": "Dann gehen sie zum Kiosk und kaufen eine Zeitung für Onkel Sven.", "tr": "Sonra büfeye gidip Sven amca için bir gazete alıyorlar.", "a": 69.03, "b": 73.68}, {"t": "N", "sp": "", "de": "Auf der ersten Seite steht ganz groß:", "tr": "İlk sayfada kocaman yazıyor:", "a": 74.19, "b": 77.14}, {"t": "H", "sp": "", "de": "Wo sind die 120 Goldmünzen? Großes Chaos im Münzmuseum München.", "tr": "120 altın sikke nerede? Münih Sikke Müzesi'nde büyük kargaşa.", "a": 76.79, "b": 84.82}, {"t": "D", "sp": "Simon", "de": "Die Goldmünzen! Opa Breuer ist der Dieb!", "tr": "Altın sikkeler! Hırsız Breuer dede!", "a": 88.05, "b": 91.52}, {"t": "D", "sp": "Laura", "de": "Simon, spinnst du? Opa Breuer ist alt, außerdem kann er nicht gut laufen.", "tr": "Simon, aklını mı kaçırdın? Breuer dede yaşlı, üstelik iyi yürüyemiyor.", "a": 91.83, "b": 97.32}, {"t": "D", "sp": "Laura", "de": "Das sieht man doch. Er kann nicht der Dieb sein!", "tr": "Bu görülüyor işte. O hırsız olamaz!", "a": 97.31, "b": 100.18}, {"t": "D", "sp": "Simon", "de": "Aber Moritz ist jung und sportlich!", "tr": "Ama Moritz genç ve sportif!", "a": 100.83, "b": 103.4}, {"t": "D", "sp": "Simon", "de": "Sie wollen die Münzen verkaufen und dann kann Moritz nach London auf die Royal Academy.", "tr": "Sikkeleri satmak istiyorlar, sonra da Moritz Londra'ya, Royal Academy'ye gidebilir.", "a": 103.05, "b": 108.74}, {"t": "D", "sp": "Laura", "de": "Simon, du spinnst wirklich!", "tr": "Simon, sen gerçekten kafayı yemişsin!", "a": 109.13, "b": 111.02}, {"t": "D", "sp": "Simon", "de": "Vielleicht spinne ich, vielleicht spinne ich aber auch nicht. Das wissen wir nicht.", "tr": "Belki kafayı yedim, belki de yemedim. Bunu bilmiyoruz.", "a": 111.87, "b": 116.66}, {"t": "D", "sp": "Simon", "de": "Ich erzähle alles Onkel Sven.", "tr": "Her şeyi Sven amcama anlatacağım.", "a": 116.93, "b": 118.6}, {"t": "D", "sp": "Simon", "de": "Und du sagst kein Wort, zu niemandem. Einverstanden? Kein Wort!", "tr": "Sen de kimseye tek kelime söylemiyorsun. Anlaştık mı? Tek kelime yok!", "a": 118.65, "b": 123.42}, {"t": "D", "sp": "Laura", "de": "Einverstanden! Kein Wort! Zu niemandem!", "tr": "Anlaştık! Tek kelime yok! Kimseye!", "a": 123.97, "b": 126.96}]}, {"n": 5, "de": "Clarissa", "tr": "Clarissa", "audio": "k5.mp3", "items": [{"t": "T", "sp": "", "de": "Clarissa.", "tr": "Clarissa.", "a": 2.17, "b": 3.08}, {"t": "N", "sp": "", "de": "Nach einer Stunde sind Laura und Simon zurück im Hotel.", "tr": "Bir saat sonra Laura ve Simon otele dönüyor.", "a": 3.71, "b": 7.84}, {"t": "N", "sp": "", "de": "Da kommt Clarissa. Sie hat ein Problem mit ihrem Computer.", "tr": "O sırada Clarissa geliyor. Bilgisayarıyla ilgili bir sorunu var.", "a": 8.37, "b": 12.66}, {"t": "D", "sp": "Clarissa", "de": "Simon, kannst du mir helfen? Du bist doch so gut mit Computern.", "tr": "Simon, bana yardım edebilir misin? Bilgisayarlarda çok iyisin ya.", "a": 20.53, "b": 25.98}, {"t": "D", "sp": "Clarissa", "de": "Ich komme mit dem Hotel-WLAN nicht ins Internet.", "tr": "Otelin Wi-Fi'ı ile internete giremiyorum.", "a": 25.63, "b": 29.56}, {"t": "D", "sp": "Simon", "de": "Natürlich, das ist kein Problem. Ich komme sofort. Eh, Laura?", "tr": "Tabii ki, sorun değil. Hemen geliyorum. Eee, Laura?", "a": 30.31, "b": 35.34}, {"t": "D", "sp": "Laura", "de": "O.k. Ich gehe in die Bar zu Moritz.", "tr": "Tamam. Ben bara, Moritz'in yanına gidiyorum.", "a": 36.79, "b": 38.64}, {"t": "N", "sp": "", "de": "Simon und Clarissa sind in Clarissas Hotelzimmer.", "tr": "Simon ve Clarissa, Clarissa'nın otel odasında.", "a": 44.03, "b": 47.54}, {"t": "D", "sp": "Simon", "de": "So, das mit dem Internet ist jetzt o.k.", "tr": "Tamam, internet işi şimdi düzeldi.", "a": 48.23, "b": 50.8}, {"t": "D", "sp": "Clarissa", "de": "Herzlichen Dank, Simon. Das ist toll.", "tr": "Çok teşekkürler Simon. Harika.", "a": 51.81, "b": 54.8}, {"t": "D", "sp": "Clarissa", "de": "Jetzt kann ich endlich meine Mode-Sites sehen.", "tr": "Artık nihayet moda sitelerime bakabilirim.", "a": 55.11, "b": 58.06}, {"t": "D", "sp": "Simon", "de": "Das war doch nichts. Du findest Mode interessant?", "tr": "Lafı bile olmaz. Modayı ilginç mi buluyorsun?", "a": 58.55, "b": 62.34}, {"t": "D", "sp": "Clarissa", "de": "Ja. Und ich gehe im September auf eine Modeschule, hier in München.", "tr": "Evet. Eylülde bir moda okuluna başlıyorum, burada, Münih'te.", "a": 63.53, "b": 68.14}, {"t": "D", "sp": "Clarissa", "de": "Im September fängt die Schule an, aber morgen ist der große Tag.", "tr": "Okul eylülde başlıyor ama yarın büyük gün.", "a": 68.51, "b": 72.96}, {"t": "D", "sp": "Simon", "de": "Warum?", "tr": "Neden?", "a": 73.43, "b": 74.2}, {"t": "N", "sp": "", "de": "Die Modeschule MODE-Kreation ist eine sehr gute Schule und sie nimmt jedes Jahr nur 30 neue Schüler auf.", "tr": "MODE-Kreation moda okulu çok iyi bir okul ve her yıl sadece 30 yeni öğrenci alıyor.", "a": 74.77, "b": 83.84}, {"t": "N", "sp": "", "de": "Im August macht sie immer eine Ausstellung mit den Kreationen von den neuen Schülern.", "tr": "Ağustosta her zaman yeni öğrencilerin tasarımlarıyla bir sergi yapıyor.", "a": 85.11, "b": 90.5}, {"t": "N", "sp": "", "de": "Denn die Schule möchte zeigen: „Auf unsere Schule kommen nur sehr gute Schüler!“", "tr": "Çünkü okul şunu göstermek istiyor: „Okulumuza sadece çok iyi öğrenciler gelir!“", "a": 90.85, "b": 97.12}, {"t": "N", "sp": "", "de": "Die drei besten Schüler bekommen einen Preis.", "tr": "En iyi üç öğrenci ödül alıyor.", "a": 97.75, "b": 100.78}, {"t": "D", "sp": "Clarissa", "de": "Die Ausstellung fängt heute um drei an und geht bis morgen um sechs Uhr.", "tr": "Sergi bugün saat üçte başlıyor ve yarın saat altıya kadar sürüyor.", "a": 100.43, "b": 107.66}, {"t": "D", "sp": "Clarissa", "de": "Dann bekommen die drei besten Schüler ihren Preis.", "tr": "Sonra en iyi üç öğrenci ödülünü alıyor.", "a": 108.13, "b": 111.12}, {"t": "D", "sp": "Clarissa", "de": "Und vielleicht bekomme ich ja einen Preis. Ich hoffe es.", "tr": "Belki ben de bir ödül alırım. Umarım.", "a": 111.69, "b": 116.28}, {"t": "D", "sp": "Simon", "de": "Viel Glück!", "tr": "Bol şans!", "a": 116.93, "b": 117.8}, {"t": "D", "sp": "Clarissa", "de": "Danke. Sag mal, Simon, kennst du die Modeschule?", "tr": "Teşekkürler. Söylesene Simon, moda okulunu biliyor musun?", "a": 118.51, "b": 123.06}, {"t": "D", "sp": "Clarissa", "de": "Sie ist in der Bergstraße. Mit welchem Bus muss ich da fahren?", "tr": "Bergstraße'de. Oraya hangi otobüsle gitmem gerekiyor?", "a": 123.71, "b": 128.72}, {"t": "D", "sp": "Simon", "de": "Die Schule kenne ich nicht, aber die Bergstraße.", "tr": "Okulu bilmiyorum ama Bergstraße'yi biliyorum.", "a": 129.07, "b": 133.02}, {"t": "D", "sp": "Simon", "de": "Du fährst mit dem Bus Nummer 12 vom Hotel zum Marienplatz.", "tr": "Otelden Marienplatz'a 12 numaralı otobüsle gidiyorsun.", "a": 133.23, "b": 137.3}, {"t": "D", "sp": "Simon", "de": "Dann gehst du links in die Alpenstraße und dann rechts. Das ist dann die Bergstraße.", "tr": "Sonra sola, Alpenstraße'ye dönüyorsun, sonra da sağa. İşte orası Bergstraße.", "a": 137.71, "b": 142.96}, {"t": "D", "sp": "Clarissa", "de": "Na, das ist ja nicht schwer. Danke, Simon.", "tr": "Eh, hiç de zor değilmiş. Teşekkürler Simon.", "a": 143.53, "b": 147.94}, {"t": "D", "sp": "Simon", "de": "Kein Problem. Und noch mal: Viel Glück für morgen!", "tr": "Ne demek. Bir kez daha: Yarın için bol şans!", "a": 148.67, "b": 151.82}]}], "gloss": {"ab": ["ab- (ayrılabilen ön ek)", "fiilin ön eki; cümle sonuna gider (abholen → holt … ab)"], "aber": ["aber", "ama, fakat"], "abholen": ["abholen", "(birini/bir şeyi) gidip almak"], "holt": ["abholen", "(birini/bir şeyi) gidip almak"], "holen": ["abholen", "(birini/bir şeyi) gidip almak"], "academy": ["Academy", "akademi (İngilizce)"], "ach": ["ach", "ah, ha"], "alle": ["alle", "hepsi, herkes"], "alles": ["alles", "her şey"], "alpenstraße": ["die Alpenstraße", "Alpenstraße (sokak adı)"], "also": ["also", "yani, demek ki"], "alt": ["alt", "yaşlı; eski"], "altes": ["alt", "yaşlı; eski"], "am": ["am (an + dem)", "-de, -da (gün/yer: am Bahnhof, am Dienstag)"], "amerika": ["Amerika", "Amerika"], "an": ["an", "-de, -a; (ankommen: varmak)"], "anrufen": ["anrufen", "telefonla aramak"], "rufst": ["anrufen", "telefonla aramak"], "arbeitet": ["arbeiten", "çalışmak"], "arbeiten": ["arbeiten", "çalışmak"], "auch": ["auch", "de, da, dahi"], "auf": ["auf", "üstünde; (auf eine Schule gehen: bir okula gitmek)"], "aufstehen": ["aufstehen", "kalkmak (yataktan)"], "aufnehmen": ["aufnehmen", "(okula/kabul) almak"], "nimmt": ["aufnehmen", "(okula/kabul) almak"], "aus": ["aus", "-den, -dan (nereden: aus Wien)"], "ausstellung": ["die Ausstellung", "sergi"], "außerdem": ["außerdem", "üstelik, ayrıca"], "august": ["der August", "ağustos"], "bahnhof": ["der Bahnhof", "tren istasyonu, gar"], "bar": ["die Bar", "bar (otelin içecek salonu)"], "bei": ["bei", "-in yanında"], "bekomme": ["bekommen", "almak, elde etmek (≠ olmak!)"], "bekommen": ["bekommen", "almak, elde etmek (≠ olmak!)"], "bergstraße": ["die Bergstraße", "Bergstraße (sokak adı)"], "beste": ["best-", "en iyi"], "besten": ["best-", "en iyi"], "besucht": ["besuchen", "ziyaret etmek"], "besuchen": ["besuchen", "ziyaret etmek"], "billiges": ["billig", "ucuz"], "billig": ["billig", "ucuz"], "bin": ["sein → ich bin", "(ben) -im"], "bis": ["bis", "-e kadar"], "bist": ["sein → du bist", "(sen) -sin"], "bisschen": ["ein bisschen", "biraz"], "braucht": ["brauchen", "ihtiyacı olmak"], "brauchen": ["brauchen", "ihtiyacı olmak"], "breuer": ["Breuer", "Breuer (soyadı); Breuers = Breuer'in"], "breuers": ["Breuer", "Breuer (soyadı); Breuers = Breuer'in"], "bringen": ["bringen", "götürmek, getirmek"], "brown": ["Brown", "Brown (otel misafiri)"], "bus": ["der Bus", "otobüs"], "chaos": ["das Chaos", "kargaşa, kaos"], "clarissa": ["Clarissa", "Clarissa; Clarissas = Clarissa'nın"], "clarissas": ["Clarissa", "Clarissa; Clarissas = Clarissa'nın"], "computer": ["der Computer", "bilgisayar"], "computern": ["der Computer", "bilgisayar"], "cousine": ["die Cousine", "(kız) kuzen"], "da": ["da", "orada; o zaman; şurada"], "dank": ["der Dank", "teşekkür (Herzlichen Dank! = Çok teşekkürler!)"], "danke": ["danke", "teşekkürler"], "dann": ["dann", "sonra; o zaman"], "darf": ["dürfen", "-ebilmek (izin), izni olmak"], "dürfen": ["dürfen", "-ebilmek (izin), izni olmak"], "das": ["das", "(nötr artikel) bu, şu"], "dein": ["dein", "senin"], "deine": ["dein", "senin"], "deinem": ["dein", "senin"], "dem": ["dem", "(Dativ artikel, der/das)"], "den": ["den", "(Akkusativ der / Dativ çoğul)"], "denn": ["denn", "çünkü; (soruda) acaba, peki"], "der": ["der", "(eril artikel)"], "deshalb": ["deshalb", "bu yüzden"], "dich": ["dich", "seni"], "die": ["die", "(dişil / çoğul artikel)"], "dieb": ["der Dieb", "hırsız"], "dienstag": ["der Dienstag", "salı"], "dir": ["dir", "sana"], "doch": ["doch", "ama; (cevap) hayır, öyle değil, …-dir işte!"], "donnerstag": ["der Donnerstag", "perşembe"], "dort": ["dort", "orada"], "drei": ["drei", "üç"], "du": ["du", "sen"], "egal": ["egal", "fark etmez"], "eh": ["eh", "eee, şey"], "ein": ["ein / eine", "bir (belirsiz artikel)"], "eine": ["ein / eine", "bir (belirsiz artikel)"], "einem": ["ein / eine", "bir (belirsiz artikel)"], "einen": ["ein / eine", "bir (belirsiz artikel)"], "einer": ["ein / eine", "bir (belirsiz artikel)"], "einfach": ["einfach", "kolay, basit"], "einverstanden": ["einverstanden", "anlaştık, kabul"], "eis": ["das Eis", "dondurma; buz"], "eiscafé": ["das Eiscafé", "dondurmacı (kafe)"], "eiscaf": ["das Eiscafé", "dondurmacı (kafe)"], "elf": ["elf", "on bir"], "endlich": ["endlich", "nihayet, sonunda"], "england": ["England", "İngiltere"], "englisch": ["Englisch", "İngilizce"], "er": ["er", "o (erkek)"], "ersten": ["erst-", "birinci, ilk"], "erzähl": ["erzählen", "anlatmak"], "erzähle": ["erzählen", "anlatmak"], "erzählt": ["erzählen", "anlatmak"], "erzählen": ["erzählen", "anlatmak"], "es": ["es", "o (nötr); es gibt = var"], "essen": ["essen", "yemek (yemek yemek)"], "etwas": ["etwas", "bir şey"], "fahren": ["fahren", "(araçla) gitmek"], "fährst": ["fahren", "(araçla) gitmek"], "ferien": ["die Ferien", "tatil (Sommerferien = yaz tatili)"], "sommerferien": ["die Ferien", "tatil (Sommerferien = yaz tatili)"], "finde": ["finden", "bulmak; (fikir) … bulmak, düşünmek"], "findest": ["finden", "bulmak; (fikir) … bulmak, düşünmek"], "findet": ["finden", "bulmak; (fikir) … bulmak, düşünmek"], "finden": ["finden", "bulmak; (fikir) … bulmak, düşünmek"], "freitagmorgen": ["der Freitagmorgen", "cuma sabahı"], "freund": ["der Freund", "(erkek) arkadaş; Freunde = arkadaşlar"], "freunde": ["der Freund", "(erkek) arkadaş; Freunde = arkadaşlar"], "freundin": ["die Freundin", "(kız) arkadaş"], "früh": ["früh", "erken"], "fuß": ["der Fuß", "ayak (zu Fuß = yürüyerek)"], "fängt": ["anfangen", "başlamak (fängt … an)"], "anfangen": ["anfangen", "başlamak (fängt … an)"], "fünf": ["fünf", "beş"], "für": ["für", "için"], "ganz": ["ganz", "tamamen, çok"], "geben": ["geben", "vermek (es gibt = var)"], "gibt": ["geben", "vermek (es gibt = var)"], "geburtstag": ["der Geburtstag", "doğum günü"], "gefrühstückt": ["frühstücken", "kahvaltı yapmak (gefrühstückt = kahvaltı yaptı)"], "frühstücken": ["frühstücken", "kahvaltı yapmak (gefrühstückt = kahvaltı yaptı)"], "gehe": ["gehen", "gitmek (yürüyerek)"], "gehen": ["gehen", "gitmek (yürüyerek)"], "gehst": ["gehen", "gitmek (yürüyerek)"], "geht": ["gehen", "gitmek (yürüyerek)"], "geht's": ["Wie geht's?", "Nasılsın?"], "gekommen": ["kommen → gekommen", "geldi (Perfekt)"], "geld": ["das Geld", "para"], "gemacht": ["machen → gemacht", "yaptı (Perfekt)"], "gern": ["gern(e)", "seve seve, severek"], "gerne": ["gern(e)", "seve seve, severek"], "gitarre": ["die Gitarre", "gitar"], "glück": ["das Glück", "şans (Viel Glück! = Bol şans!)"], "goldmünzen": ["die Goldmünze, -n", "altın sikke"], "groß": ["groß", "büyük"], "große": ["groß", "büyük"], "großen": ["groß", "büyük"], "großes": ["groß", "büyük"], "gut": ["gut", "iyi"], "gute": ["gut", "iyi"], "guten": ["gut", "iyi"], "gäste": ["der Gast, die Gäste", "misafir (otelde kalan kişi)"], "habe": ["haben", "sahip olmak, -si olmak"], "haben": ["haben", "sahip olmak, -si olmak"], "habt": ["haben", "sahip olmak, -si olmak"], "hast": ["haben", "sahip olmak, -si olmak"], "hat": ["haben", "sahip olmak, -si olmak"], "hatte": ["haben → hatte", "vardı (geçmiş)"], "halte": ["halten", "tutmak"], "halten": ["halten", "tutmak"], "hallo": ["hallo", "merhaba"], "handy": ["das Handy", "cep telefonu"], "hause": ["nach Hause", "eve (zu Hause = evde)"], "helfen": ["helfen", "yardım etmek"], "hilft": ["helfen", "yardım etmek"], "herr": ["der Herr", "bay, beyefendi"], "herrn": ["der Herr", "bay, beyefendi"], "herzlichen": ["herzlich", "içten (Herzlichen Dank = çok teşekkürler)"], "heute": ["heute", "bugün"], "hi": ["hi", "selam"], "hier": ["hier", "burada"], "hobby": ["das Hobby", "hobi"], "hoffe": ["hoffen", "ummak"], "hoffen": ["hoffen", "ummak"], "hotel": ["das Hotel", "otel"], "hotel-café": ["das Hotel-Café", "otel kafesi"], "hotel-caf": ["das Hotel-Café", "otel kafesi"], "hotel-wlan": ["das Hotel-WLAN", "otelin kablosuz interneti (Wi-Fi)"], "hotelzimmer": ["das Hotelzimmer", "otel odası"], "hund": ["der Hund", "köpek"], "ich": ["ich", "ben"], "ihm": ["ihm", "ona (erkek)"], "ihnen": ["ihnen", "onlara"], "ihr": ["ihr", "onun (kadın); siz (ihr habt)"], "ihrem": ["ihr", "onun (kadın); siz (ihr habt)"], "ihren": ["ihr", "onun (kadın); siz (ihr habt)"], "ihrer": ["ihr", "onun (kadın); siz (ihr habt)"], "im": ["im (in + dem)", "-de, -da, içinde"], "immer": ["immer", "her zaman"], "in": ["in", "içinde; -e (yön)"], "ins": ["ins (in + das)", "-e, içine (yön)"], "interessant": ["interessant", "ilginç"], "internet": ["das Internet", "internet"], "ist": ["sein → er/sie ist", "-dir"], "ja": ["ja", "evet; (vurgu) ya, işte"], "jacke": ["die Jacke", "ceket"], "jahr": ["das Jahr", "yıl (… Jahre alt = … yaşında)"], "jahre": ["das Jahr", "yıl (… Jahre alt = … yaşında)"], "jeden": ["jed-", "her"], "jedes": ["jed-", "her"], "jetzt": ["jetzt", "şimdi"], "jung": ["jung", "genç"], "kanada": ["Kanada", "Kanada"], "kann": ["können", "-ebilmek"], "kannst": ["können", "-ebilmek"], "können": ["können", "-ebilmek"], "kati": ["Kati", "Kati (Laura'nın kuzeni)"], "kaufen": ["kaufen", "satın almak"], "kein": ["kein / keine", "hiç … yok, değil"], "keine": ["kein / keine", "hiç … yok, değil"], "kenne": ["kennen", "tanımak, bilmek"], "kennst": ["kennen", "tanımak, bilmek"], "kennt": ["kennen", "tanımak, bilmek"], "kennen": ["kennen", "tanımak, bilmek"], "kennenlernen": ["kennenlernen", "tanışmak"], "kiosk": ["der Kiosk", "büfe, gazete bayii"], "klar": ["klar", "açık, belli (Na klar! = Elbette!)"], "kling": ["Kling! Klong!", "çın! (madeni ses)"], "klong": ["Kling! Klong!", "çın! (madeni ses)"], "klein": ["klein", "küçük"], "kleines": ["klein", "küçük"], "komisch": ["komisch", "tuhaf, garip"], "komm": ["kommen", "gelmek"], "komme": ["kommen", "gelmek"], "kommen": ["kommen", "gelmek"], "kommst": ["kommen", "gelmek"], "kommt": ["kommen", "gelmek"], "krank": ["krank", "hasta"], "kreationen": ["die Kreation, -en", "tasarım, kreasyon"], "lange": ["lange", "uzun süre"], "langweilig": ["langweilig", "sıkıcı"], "laufen": ["laufen", "yürümek, koşmak"], "laura": ["Laura", "Laura"], "leben": ["leben", "yaşamak"], "lebt": ["leben", "yaşamak"], "leider": ["leider", "maalesef"], "liebt": ["lieben", "sevmek"], "lieben": ["lieben", "sevmek"], "links": ["links", "sol(a)"], "london": ["London", "Londra"], "lust": ["die Lust", "istek, heves (keine Lust = canı istemiyor)"], "machst": ["machen", "yapmak"], "macht": ["machen", "yapmak"], "machen": ["machen", "yapmak"], "mai": ["der Mai", "mayıs"], "mal": ["mal", "bir (kere); (rica) hele, bir"], "man": ["man", "insan, kişi (genel özne)"], "manchester": ["Manchester United", "futbol takımı"], "united": ["Manchester United", "futbol takımı"], "manchmal": ["manchmal", "bazen"], "marienplatz": ["der Marienplatz", "Marienplatz (Münih'in merkez meydanı)"], "mein": ["mein", "benim"], "meine": ["mein", "benim"], "meinen": ["mein", "benim"], "minute": ["die Minute, -n", "dakika"], "minuten": ["die Minute, -n", "dakika"], "mir": ["mir", "bana"], "mister": ["Mister", "Bay (İngilizce)"], "mit": ["mit", "ile"], "mode": ["die Mode", "moda"], "mode-kreation": ["MODE-Kreation", "moda okulunun adı"], "mode-sites": ["die Mode-Sites", "moda siteleri"], "modeschule": ["die Modeschule", "moda okulu"], "morgen": ["morgen", "yarın (der Morgen = sabah)"], "moritz": ["Moritz", "Moritz"], "muss": ["müssen", "-meli, zorunda olmak"], "müssen": ["müssen", "-meli, zorunda olmak"], "mutter": ["die Mutter", "anne"], "möchte": ["möchten", "istemek (kibar), -mek istemek"], "möchten": ["möchten", "istemek (kibar), -mek istemek"], "münchen": ["München", "Münih"], "münzen": ["die Münze, -n", "madeni para, sikke"], "münzmuseum": ["das Münzmuseum", "sikke müzesi"], "music": ["Royal Academy of Music", "Londra'daki ünlü müzik okulu"], "of": ["Royal Academy of Music", "Londra'daki ünlü müzik okulu"], "royal": ["Royal Academy of Music", "Londra'daki ünlü müzik okulu"], "na": ["na", "eh, peki"], "nach": ["nach", "-e (şehir/ülke); -den sonra"], "natürlich": ["natürlich", "tabii ki, elbette"], "nehmen": ["nehmen", "almak; (otobüse) binmek"], "nein": ["nein", "hayır"], "nett": ["nett", "sevimli, kibar, hoş"], "neue": ["neu", "yeni"], "neuen": ["neu", "yeni"], "new": ["New York", "New York"], "york": ["New York", "New York"], "nicht": ["nicht", "değil, -me"], "nichts": ["nichts", "hiçbir şey (Das war doch nichts = Lafı mı olur)"], "nie": ["nie", "asla, hiç"], "niemandem": ["niemand", "kimse (zu niemandem = kimseye)"], "noch": ["noch", "hâlâ, daha (noch mal = bir kez daha)"], "nummer": ["die Nummer", "numara"], "nur": ["nur", "sadece"], "o": ["O.k.", "tamam"], "k": ["O.k.", "tamam"], "och": ["och / oh", "aa, oh"], "oh": ["och / oh", "aa, oh"], "oder": ["oder", "veya, yoksa"], "oft": ["oft", "sık sık"], "onkel": ["der Onkel", "amca, dayı"], "opa": ["der Opa", "dede"], "ostbahnhof": ["der Ostbahnhof", "Doğu Garı (Münih)"], "preis": ["der Preis", "ödül; fiyat"], "problem": ["das Problem, -e", "sorun"], "probleme": ["das Problem, -e", "sorun"], "rechts": ["rechts", "sağ(a)"], "reinigung": ["die Reinigung", "kuru temizlemeci"], "restaurant": ["das Restaurant", "restoran"], "rezeption": ["die Rezeption", "resepsiyon"], "richtig": ["richtig", "doğru"], "ringstraße": ["die Ringstraße", "Ringstraße (sokak adı)"], "sag": ["sagen", "söylemek (Sag mal = Söylesene)"], "sagen": ["sagen", "söylemek (Sag mal = Söylesene)"], "sagst": ["sagen", "söylemek (Sag mal = Söylesene)"], "schlüssel": ["der Schlüssel", "anahtar"], "schon": ["schon", "zaten, artık, çoktan"], "schule": ["die Schule", "okul"], "schwer": ["schwer", "zor; ağır"], "schüler": ["der Schüler", "öğrenci"], "schülern": ["der Schüler", "öğrenci"], "sechs": ["sechs", "altı"], "sehen": ["sehen", "görmek (Das sieht man = Bu görülüyor)"], "sieht": ["sehen", "görmek (Das sieht man = Bu görülüyor)"], "sehr": ["sehr", "çok"], "sein": ["sein", "onun (erkek); (fiil) olmak"], "seine": ["sein", "onun (erkek); (fiil) olmak"], "seinem": ["sein", "onun (erkek); (fiil) olmak"], "seite": ["die Seite", "sayfa"], "september": ["der September", "eylül"], "sie": ["sie", "o (kadın) / onlar; Sie = siz (resmî)"], "simon": ["Simon", "Simon; Simons = Simon'un"], "simons": ["Simon", "Simon; Simons = Simon'un"], "sind": ["sein → wir/sie sind", "-iz, -dirler"], "sitzt": ["sitzen", "oturmak"], "sitzen": ["sitzen", "oturmak"], "so": ["so", "öyle, bu kadar; eh, tamam"], "sofort": ["sofort", "hemen"], "sommer": ["der Sommer", "yaz; Hotel Sommer = otelin adı"], "spazieren": ["spazieren gehen", "yürüyüşe çıkmak"], "spiel": ["das Spiel", "oyun, maç"], "spielt": ["spielen", "oynamak; (enstrüman) çalmak"], "spielen": ["spielen", "oynamak; (enstrüman) çalmak"], "spinne": ["spinnen", "saçmalamak, kafayı yemek"], "spinnst": ["spinnen", "saçmalamak, kafayı yemek"], "spinnen": ["spinnen", "saçmalamak, kafayı yemek"], "sportlich": ["sportlich", "sportif"], "sprechen": ["sprechen", "konuşmak"], "stadt": ["die Stadt", "şehir"], "steht": ["stehen", "durmak; (yazı) yazmak"], "stehen": ["stehen", "durmak; (yazı) yazmak"], "stunde": ["die Stunde", "saat (süre)"], "super": ["super", "süper"], "sven": ["Sven", "Sven (Simon'un amcası)"], "tag": ["der Tag, -e", "gün"], "tage": ["der Tag, -e", "gün"], "taschen": ["die Tasche, -n", "çanta"], "telefon": ["das Telefon", "telefon"], "teuer": ["teuer", "pahalı"], "toll": ["toll", "harika"], "total": ["total", "tamamen, çok"], "tschüss": ["tschüss", "hoşça kal, görüşürüz"], "uhr": ["die Uhr", "saat (um 11 Uhr = saat 11'de)"], "um": ["um", "(saat) -de"], "und": ["und", "ve"], "unsere": ["unser", "bizim"], "verkaufen": ["verkaufen", "satmak"], "verstehe": ["verstehen", "anlamak"], "verstehen": ["verstehen", "anlamak"], "viel": ["viel / viele", "çok"], "viele": ["viel / viele", "çok"], "vielleicht": ["vielleicht", "belki"], "vom": ["vom (von + dem)", "-den"], "von": ["von", "-den; -in (aitlik)"], "wagner": ["Wagner", "Wagner (Sven'in soyadı)"], "wann": ["wann", "ne zaman"], "war": ["sein → war", "idi (geçmiş)"], "warten": ["warten", "beklemek"], "warum": ["warum", "neden"], "was": ["was", "ne"], "welchem": ["welch-", "hangi"], "wenig": ["wenig", "az"], "wie": ["wie", "nasıl"], "wien": ["Wien", "Viyana"], "will": ["wollen", "istemek (kesin)"], "willst": ["wollen", "istemek (kesin)"], "wollen": ["wollen", "istemek (kesin)"], "wir": ["wir", "biz"], "wirklich": ["wirklich", "gerçekten"], "wissen": ["wissen", "bilmek"], "wo": ["wo", "nerede"], "woher": ["woher", "nereden"], "wort": ["das Wort", "kelime, söz"], "zehn": ["zehn", "on"], "zeigen": ["zeigen", "göstermek"], "zeit": ["die Zeit", "zaman, vakit"], "zeitung": ["die Zeitung", "gazete"], "zimmer": ["das Zimmer", "oda"], "zu": ["zu", "-e, -a (kişiye/yere); zu Fuß = yürüyerek"], "zug": ["der Zug", "tren"], "zuhören": ["zuhören", "dinlemek"], "zum": ["zum (zu + dem)", "-e, -a"], "zur": ["zur (zu + der)", "-e, -a"], "zurück": ["zurück", "geri"], "zurückkommen": ["zurückkommen", "geri dönmek"], "zurückgeben": ["zurückgeben", "geri vermek"], "zusammen": ["zusammen", "birlikte"], "zwei": ["zwei", "iki"], "zwölf": ["zwölf", "on iki"], "übe": ["üben", "alıştırma yapmak, çalışmak (enstrüman)"], "übt": ["üben", "alıştırma yapmak, çalışmak (enstrüman)"], "üben": ["üben", "alıştırma yapmak, çalışmak (enstrüman)"]}, "vocab": [{"a": "der", "w": "Freund", "pl": "-e", "tr": "arkadaş (erkek)", "ch": 0, "ex": "Er ist der beste Freund von Laura."}, {"a": "die", "w": "Cousine", "pl": "-n", "tr": "kuzen (kız)", "ch": 0, "ex": "Sie ist die Cousine von Laura."}, {"a": "die", "w": "Ferien", "pl": "(nur Pl.)", "tr": "tatil", "ch": 0, "ex": "Jetzt sind Sommerferien."}, {"a": "der", "w": "Geburtstag", "pl": "-e", "tr": "doğum günü", "ch": 0, "ex": "Im Mai hatte er Geburtstag."}, {"a": "das", "w": "Spiel", "pl": "-e", "tr": "maç, oyun", "ch": 0, "ex": "ein Spiel von Manchester United"}, {"a": "das", "w": "Geld", "pl": "", "tr": "para", "ch": 0, "ex": "Er braucht Geld."}, {"a": "die", "w": "Mode", "pl": "", "tr": "moda", "ch": 0, "ex": "Ihr Hobby ist Mode."}, {"a": "das", "w": "Hobby", "pl": "-s", "tr": "hobi", "ch": 0, "ex": "Ihr Hobby ist Mode."}, {"a": "der", "w": "Polizist", "pl": "-en", "tr": "polis", "ch": 0, "ex": "Polizist Moser"}, {"a": "der", "w": "Opa", "pl": "-s", "tr": "dede", "ch": 0, "ex": "Er ist der Opa von Moritz."}, {"a": "", "w": "alt", "pl": "", "tr": "yaşlı, eski", "ch": 0, "ex": "Er ist schon sehr alt."}, {"a": "", "w": "leben", "pl": "", "tr": "yaşamak", "ch": 0, "ex": "Sie lebt in München."}, {"a": "", "w": "helfen", "pl": "", "tr": "yardım etmek", "ch": 0, "ex": "Er hilft seinem Onkel."}, {"a": "der", "w": "Bahnhof", "pl": "¨-e", "tr": "tren istasyonu", "ch": 1, "ex": "Holt dich deine Mutter vom Bahnhof ab?"}, {"a": "der", "w": "Zug", "pl": "¨-e", "tr": "tren", "ch": 1, "ex": "Wann kommt dein Zug an?"}, {"a": "die", "w": "Mutter", "pl": "¨-", "tr": "anne", "ch": 1, "ex": "Sie arbeitet."}, {"a": "", "w": "abholen", "pl": "", "tr": "(gidip) almak", "ch": 1, "ex": "Holt dich deine Mutter ab?"}, {"a": "", "w": "ankommen", "pl": "", "tr": "varmak", "ch": 1, "ex": "Wann kommt dein Zug an?"}, {"a": "", "w": "zurückkommen", "pl": "", "tr": "geri dönmek", "ch": 1, "ex": "Heute kommt Laura zurück."}, {"a": "", "w": "leider", "pl": "", "tr": "maalesef", "ch": 1, "ex": "Nein, leider nicht."}, {"a": "", "w": "heute", "pl": "", "tr": "bugün", "ch": 1, "ex": "Heute kommt Laura zurück."}, {"a": "das", "w": "Eis", "pl": "", "tr": "dondurma", "ch": 2, "ex": "Sie möchte ein Eis essen."}, {"a": "das", "w": "Eiscafé", "pl": "-s", "tr": "dondurmacı", "ch": 2, "ex": "Sie gehen in ein Eiscafé."}, {"a": "der", "w": "Gast", "pl": "¨-e", "tr": "misafir", "ch": 2, "ex": "Gäste aus Amerika"}, {"a": "die", "w": "Tasche", "pl": "-n", "tr": "çanta", "ch": 2, "ex": "die zwei großen Taschen"}, {"a": "der", "w": "Bus", "pl": "-se", "tr": "otobüs", "ch": 2, "ex": "mit dem Bus Nummer 22"}, {"a": "der", "w": "Onkel", "pl": "-", "tr": "amca, dayı", "ch": 2, "ex": "meinen Onkel Sven"}, {"a": "die", "w": "Zeit", "pl": "", "tr": "zaman, vakit", "ch": 2, "ex": "Hast du keine Zeit?"}, {"a": "die", "w": "Lust", "pl": "", "tr": "istek, heves", "ch": 2, "ex": "Oder keine Lust?"}, {"a": "", "w": "krank", "pl": "", "tr": "hasta", "ch": 2, "ex": "Kati war krank."}, {"a": "", "w": "kennenlernen", "pl": "", "tr": "tanışmak", "ch": 2, "ex": "meinen Onkel kennenlernen"}, {"a": "", "w": "aufstehen", "pl": "", "tr": "(yataktan) kalkmak", "ch": 2, "ex": "nicht so früh aufstehen"}, {"a": "", "w": "einfach", "pl": "", "tr": "kolay", "ch": 2, "ex": "Das ist einfach."}, {"a": "", "w": "erzählen", "pl": "", "tr": "anlatmak", "ch": 2, "ex": "Laura erzählt von Wien."}, {"a": "das", "w": "Hotel", "pl": "-s", "tr": "otel", "ch": 3, "ex": "im Hotel Sommer"}, {"a": "die", "w": "Rezeption", "pl": "-en", "tr": "resepsiyon", "ch": 3, "ex": "an der Rezeption"}, {"a": "der", "w": "Schlüssel", "pl": "-", "tr": "anahtar", "ch": 3, "ex": "den Schlüssel für die Bar"}, {"a": "die", "w": "Bar", "pl": "-s", "tr": "bar", "ch": 3, "ex": "in der Bar"}, {"a": "die", "w": "Gitarre", "pl": "-n", "tr": "gitar", "ch": 3, "ex": "mit der Gitarre"}, {"a": "der", "w": "Hund", "pl": "-e", "tr": "köpek", "ch": 3, "ex": "mit seinem Hund"}, {"a": "das", "w": "Zimmer", "pl": "-", "tr": "oda", "ch": 3, "ex": "Zimmer 104"}, {"a": "das", "w": "Restaurant", "pl": "-s", "tr": "restoran", "ch": 3, "ex": "im Restaurant"}, {"a": "das", "w": "Handy", "pl": "-s", "tr": "cep telefonu", "ch": 3, "ex": "ein total altes Handy"}, {"a": "die", "w": "Jacke", "pl": "-n", "tr": "ceket", "ch": 3, "ex": "seine Jacke"}, {"a": "die", "w": "Reinigung", "pl": "-en", "tr": "kuru temizlemeci", "ch": 3, "ex": "in die Reinigung bringen"}, {"a": "die", "w": "Stadt", "pl": "¨-e", "tr": "şehir", "ch": 3, "ex": "in der Stadt"}, {"a": "das", "w": "Telefon", "pl": "-e", "tr": "telefon", "ch": 3, "ex": "am Telefon"}, {"a": "der", "w": "Fuß", "pl": "¨-e", "tr": "ayak", "ch": 3, "ex": "zu Fuß"}, {"a": "", "w": "üben", "pl": "", "tr": "alıştırma yapmak", "ch": 3, "ex": "Ich übe."}, {"a": "", "w": "zuhören", "pl": "", "tr": "dinlemek", "ch": 3, "ex": "Darf ich zuhören?"}, {"a": "", "w": "komisch", "pl": "", "tr": "tuhaf", "ch": 3, "ex": "Etwas ist komisch."}, {"a": "", "w": "langweilig", "pl": "", "tr": "sıkıcı", "ch": 3, "ex": "Simon findet Moritz langweilig."}, {"a": "", "w": "teuer", "pl": "", "tr": "pahalı", "ch": 3, "ex": "Die ist teuer."}, {"a": "", "w": "billig", "pl": "", "tr": "ucuz", "ch": 3, "ex": "ein billiges Zimmer"}, {"a": "", "w": "nett", "pl": "", "tr": "sevimli, kibar", "ch": 3, "ex": "sehr nett"}, {"a": "", "w": "frühstücken", "pl": "", "tr": "kahvaltı yapmak", "ch": 3, "ex": "Sie haben gefrühstückt."}, {"a": "die", "w": "Münze", "pl": "-n", "tr": "madeni para, sikke", "ch": 4, "ex": "zwei Münzen"}, {"a": "die", "w": "Goldmünze", "pl": "-n", "tr": "altın sikke", "ch": 4, "ex": "Wo sind die 120 Goldmünzen?"}, {"a": "die", "w": "Zeitung", "pl": "-en", "tr": "gazete", "ch": 4, "ex": "eine Zeitung vom Kiosk"}, {"a": "der", "w": "Kiosk", "pl": "-e", "tr": "büfe", "ch": 4, "ex": "vom Kiosk"}, {"a": "der", "w": "Dieb", "pl": "-e", "tr": "hırsız", "ch": 4, "ex": "Opa Breuer ist der Dieb!"}, {"a": "die", "w": "Seite", "pl": "-n", "tr": "sayfa", "ch": 4, "ex": "auf der ersten Seite"}, {"a": "das", "w": "Wort", "pl": "¨-er", "tr": "kelime, söz", "ch": 4, "ex": "Kein Wort!"}, {"a": "die", "w": "Minute", "pl": "-n", "tr": "dakika", "ch": 4, "ex": "eine Minute warten"}, {"a": "das", "w": "Museum", "pl": "Museen", "tr": "müze", "ch": 4, "ex": "im Münzmuseum"}, {"a": "", "w": "anrufen", "pl": "", "tr": "telefonla aramak", "ch": 4, "ex": "Ich will Onkel Sven anrufen."}, {"a": "", "w": "warten", "pl": "", "tr": "beklemek", "ch": 4, "ex": "Kannst du mal warten?"}, {"a": "", "w": "zurückgeben", "pl": "", "tr": "geri vermek", "ch": 4, "ex": "sofort zurückgeben"}, {"a": "", "w": "verkaufen", "pl": "", "tr": "satmak", "ch": 4, "ex": "die Münzen verkaufen"}, {"a": "", "w": "kaufen", "pl": "", "tr": "satın almak", "ch": 4, "ex": "eine Zeitung kaufen"}, {"a": "", "w": "sportlich", "pl": "", "tr": "sportif", "ch": 4, "ex": "jung und sportlich"}, {"a": "", "w": "einverstanden", "pl": "", "tr": "anlaştık", "ch": 4, "ex": "Einverstanden!"}, {"a": "der", "w": "Computer", "pl": "-", "tr": "bilgisayar", "ch": 5, "ex": "Problem mit ihrem Computer"}, {"a": "das", "w": "Internet", "pl": "", "tr": "internet", "ch": 5, "ex": "ins Internet"}, {"a": "die", "w": "Modeschule", "pl": "-n", "tr": "moda okulu", "ch": 5, "ex": "auf eine Modeschule"}, {"a": "die", "w": "Ausstellung", "pl": "-en", "tr": "sergi", "ch": 5, "ex": "eine Ausstellung"}, {"a": "die", "w": "Kreation", "pl": "-en", "tr": "tasarım", "ch": 5, "ex": "mit den Kreationen"}, {"a": "der", "w": "Preis", "pl": "-e", "tr": "ödül; fiyat", "ch": 5, "ex": "einen Preis bekommen"}, {"a": "der", "w": "Schüler", "pl": "-", "tr": "öğrenci", "ch": 5, "ex": "30 neue Schüler"}, {"a": "die", "w": "Schule", "pl": "-n", "tr": "okul", "ch": 5, "ex": "Die Schule fängt an."}, {"a": "die", "w": "Stunde", "pl": "-n", "tr": "saat (süre)", "ch": 5, "ex": "nach einer Stunde"}, {"a": "das", "w": "Glück", "pl": "", "tr": "şans", "ch": 5, "ex": "Viel Glück!"}, {"a": "", "w": "anfangen", "pl": "", "tr": "başlamak", "ch": 5, "ex": "Die Ausstellung fängt um drei an."}, {"a": "", "w": "bekommen", "pl": "", "tr": "almak, elde etmek", "ch": 5, "ex": "einen Preis bekommen"}, {"a": "", "w": "hoffen", "pl": "", "tr": "ummak", "ch": 5, "ex": "Ich hoffe es."}, {"a": "", "w": "links", "pl": "", "tr": "sol(a)", "ch": 5, "ex": "links in die Alpenstraße"}, {"a": "", "w": "rechts", "pl": "", "tr": "sağ(a)", "ch": 5, "ex": "und dann rechts"}, {"a": "", "w": "schwer", "pl": "", "tr": "zor", "ch": 5, "ex": "Das ist nicht schwer."}]};
+</script>
+<script>
+"use strict";
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const nz=s=>String(s||"").toLowerCase().replace(/ä/g,"ae").replace(/ö/g,"oe").replace(/ü/g,"ue").replace(/ß/g,"ss").replace(/é/g,"e").replace(/[^a-z0-9 ]+/g," ").replace(/\s+/g," ").trim();
+const CH=DATA.chapters, G=DATA.gloss, V=DATA.vocab;
+const SPK={Laura:["Laura","var(--laura)"],Simon:["Simon","var(--simon)"],Sven:["Onkel Sven","var(--sven)"],Moritz:["Moritz","var(--moritz)"],Breuer:["Opa Breuer","var(--breuer)"],Clarissa:["Clarissa","var(--clarissa)"],Kati:["Kati","var(--kati)"],Moser:["Polizist Moser","var(--moser)"]};
+
+/* ---------- storage & coins ---------- */
+let S={coins:{},ws:{},chap:1,known:{}};
+try{const t=JSON.parse(localStorage.getItem("gih-state")||"null");if(t)S=Object.assign(S,t)}catch(e){}
+const save=()=>{try{localStorage.setItem("gih-state",JSON.stringify(S))}catch(e){}};
+function coinTotal(){return Object.values(S.coins).reduce((a,b)=>a+b,0)}
+function showCoins(){$("#coinN").textContent=coinTotal()}
+let toastT;
+function toast(msg){$("#toastT").textContent=msg;$("#toast").classList.add("on");clearTimeout(toastT);toastT=setTimeout(()=>$("#toast").classList.remove("on"),1800)}
+function award(key,n=1,msg){
+  if(S.coins[key])return false;
+  const before=coinTotal();S.coins[key]=n;save();showCoins();
+  const c=$("#coinIco");c.classList.remove("pop");void c.offsetWidth;c.classList.add("pop");
+  const now=coinTotal();
+  if(before<120&&now>=120)toast("Tebrikler! 120 sikkenin hepsini buldun! 🏆");
+  else toast(msg||("+"+n+" Münze"+(n>1?"n":"")));
+  return true;
+}
+
+/* ---------- speech ---------- */
+let deVoice=null;
+function pickVoice(){try{const vs=speechSynthesis.getVoices();deVoice=vs.find(v=>/^de(-|_)DE/i.test(v.lang))||vs.find(v=>/^de/i.test(v.lang))||null}catch(e){}}
+try{pickVoice();speechSynthesis.onvoiceschanged=pickVoice}catch(e){}
+function say(t){try{stopAudio();speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang="de-DE";if(deVoice)u.voice=deVoice;u.rate=.85;speechSynthesis.speak(u)}catch(e){toast("Bu tarayıcıda sesli okuma yok")}}
+
+/* ---------- audio engine ---------- */
+const aud=$("#aud");let clipEnd=null,clipCb=null,raf=0,curFile="";
+const BLOBS={};let ready=Promise.resolve();
+function getBlob(f){const E=window.AUDIO_EMBED;if(E&&E[f])return BLOBS[f]||(BLOBS[f]=fetch(E[f]).then(r=>r.blob()).then(b=>URL.createObjectURL(b)).catch(()=>E[f]));return BLOBS[f]||(BLOBS[f]=fetch("audio/"+f).then(r=>{if(!r.ok)throw 0;return r.blob()}).then(b=>URL.createObjectURL(b)).catch(()=>"audio/"+f))}
+function setSrc(f){if(curFile!==f){curFile=f;ready=getBlob(f).then(u=>{if(curFile===f&&aud.src!==u){aud.src=u}})}return ready}
+function prefetchAll(){["k1.mp3","k2.mp3","k3.mp3","k4.mp3","k5.mp3"].reduce((p,f)=>p.then(()=>getBlob(f)),Promise.resolve())}
+function tick(){if(clipEnd!=null&&aud.currentTime>=clipEnd){aud.pause();const cb=clipCb;clipEnd=null;clipCb=null;cb&&cb()}onTime();if(!aud.paused)raf=requestAnimationFrame(tick)}
+aud.addEventListener("play",()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(tick);updPlayBtn()});
+aud.addEventListener("pause",()=>{updPlayBtn()});
+function seekPlay(t){ready.then(()=>seekPlay2(t))}
+function seekPlay2(t){const go=()=>{aud.currentTime=t;const p=aud.play();p&&p.catch(()=>toast("Ses başlatılamadı – tekrar dokun"))};if(aud.readyState>=1)go();else aud.addEventListener("loadedmetadata",go,{once:true})}
+function playClip(file,a,b,cb){try{speechSynthesis.cancel()}catch(e){}setSrc(file);clipEnd=b;clipCb=cb||null;seekPlay(a)}
+function stopAudio(){aud.pause();clipEnd=null;clipCb=null}
+function allSents(){const out=[];CH.forEach(c=>c.items.forEach(s=>{if(s.t!=="@")out.push(Object.assign({file:c.audio,ch:c.n},s))}));return out}
+const SENTS=allSents();
+function findSent(sub){const n=nz(sub);return SENTS.find(s=>nz(s.de).includes(n))}
+function playSent(s){if(s)playClip(s.file,s.a,s.b)}
+
+/* ---------- popover ---------- */
+const pop=$("#pop");
+function lookup(w){const k=w.toLowerCase();return G[k]||G[k.replace(/'s$/,"")]||null}
+function showPop(el,word){
+  const g=lookup(word);if(!g)return;
+  const art=(g[0].match(/^(der|die|das) /)||[])[1];
+  pop.innerHTML=`<div class="de">${art?`<span class="art-${art}" style="color:inherit">${esc(g[0])}</span>`:esc(g[0])}</div><div class="trw">${esc(g[1])}</div><div class="row"><button id="popSay">🔊 Dinle</button><button id="popX">Kapat</button></div>`;
+  pop.style.display="block";
+  const r=el.getBoundingClientRect();let x=r.left,y=r.bottom+8;
+  const pw=pop.offsetWidth,ph=pop.offsetHeight;
+  if(x+pw>innerWidth-10)x=innerWidth-pw-10;if(y+ph>innerHeight-10)y=r.top-ph-8;
+  pop.style.left=Math.max(10,x)+"px";pop.style.top=y+"px";
+  $("#popSay").onclick=()=>say(g[0].replace(/\(.*?\)/g,"").replace(/→.*$/,"").split(",")[0]);
+  $("#popX").onclick=()=>pop.style.display="none";
+}
+document.addEventListener("click",e=>{const w=e.target.closest(".w");if(w){e.stopPropagation();showPop(w,w.dataset.w);return}if(!e.target.closest("#pop"))pop.style.display="none"});
+addEventListener("scroll",()=>pop.style.display="none",{passive:true});
+const NAMES=new Set(["laura","simon","kati","sven","moritz","clarissa","breuer","wagner","brown","clarissas","simons","breuers"]);
+function wrapWords(t){return esc(t).replace(/[A-Za-zÄÖÜäöüßé][A-Za-zÄÖÜäöüßé\-']*/g,m=>m.length>1&&!NAMES.has(m.toLowerCase())&&lookup(m)?`<span class="w" data-w="${m}">${m}</span>`:m)}
+
+/* ---------- router ---------- */
+const views=["lobby","lesen","woerter","grammatik","aufgaben","spiele"];
+function route(){const h=location.hash.slice(1);const v=views.includes(h)?h:"lobby";
+  $$("section.view").forEach(s=>s.classList.toggle("on",s.id==="v-"+v));
+  $$("#nav a").forEach(a=>a.classList.toggle("on",a.dataset.v===v));
+  if(v!=="lesen")stopAudio();
+  scrollTo({top:0});
+}
+addEventListener("hashchange",route);
+
+/* ---------- lobby ---------- */
+function renderLobby(){
+  const tiles=[["101","#lesen","Okuma Salonu","5 bölüm + kişiler, orijinal sesle; her kelimenin Türkçesi."],["102","#woerter","Kelimeler","Artikelli kelime listesi ve kelime kartları."],["103","#grammatik","Dil Bilgisi","8 yapı: ayrılabilen fiiller, modal fiiller, saat…"],["104","#aufgaben","Çalışma Kâğıdı","12 alıştırma, anında kontrol."],["105","#spiele","Oyun Odası","Hafıza, Artikel yarışı, Kim söyledi?, Dikte…"]];
+  $("#lobbyTiles").innerHTML=tiles.map(t=>`<a class="tile" href="${t[1]}"><span class="tag">ZIMMER ${t[0]}</span><h3>${t[2]}</h3><p>${t[3]}</p></a>`).join("");
+  $("#cast").innerHTML=Object.values(SPK).map(([n,c])=>`<span title="${n}" style="display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,.18);border-radius:30px;padding:3px 10px 3px 3px;font-size:14px"><span class="avatar" style="background:${c};width:26px;height:26px;font-size:12px;border:1.5px solid #fbeed6">${n.split(" ").pop()[0]}</span>${n}</span>`).join("");
+  ["stName","stSur","stKl","stNr"].forEach(id=>{const el=$("#"+id);el.value=S[id]||"";el.oninput=()=>{S[id]=el.value;save()}});
+}
+
+/* ---------- reader ---------- */
+const TIPS={
+ 0:"Kişileri tanı: <b>Sie ist zwölf</b> = O on iki yaşında. Almancada yaş için <b>sein</b> (olmak) kullanılır: <i>Er ist 13 (Jahre alt).</i>",
+ 1:"Mesajlaşma dili! <b>Holt … ab</b>, <b>kommt … an</b>: ayrılabilen fiillerin ön eki cümlenin sonuna gider. → Dil Bilgisi › Ayrılabilen fiiller.",
+ 2:"<b>Kannst</b> du … <b>kennenlernen</b>? Modal fiil 2. sırada, asıl fiil en sonda. <b>Doch!</b> = olumsuz soruya ‘evet’ demek.",
+ 3:"<b>Darf ich … zuhören?</b> izin isteme. <b>Kannst du … abholen?</b> rica. Saat: <b>um elf</b>, <b>bis um zwölf</b>.",
+ 4:"<b>Woher</b> = nereden. <b>Spinnst du?</b> = Aklını mı kaçırdın? <b>Einverstanden!</b> = Anlaştık!",
+ 5:"Yol tarifi: <b>links</b> (sol), <b>rechts</b> (sağ), <b>mit dem Bus</b>. Zaman: <b>um drei</b>, <b>bis morgen um sechs</b>."
+};
+let rd={sents:[],range:[0,0],cur:-1,stop:false,stoppedAt:-1};
+function renderTabs(){
+  $("#chapTabs").innerHTML=CH.map(c=>`<button data-c="${c.n}" class="${c.n==S.chap?"on":""}"><b>${c.n?"KAPITEL "+c.n:"VORWORT"}</b>${esc(c.de)}</button>`).join("");
+  $$("#chapTabs button").forEach(b=>b.onclick=()=>{S.chap=+b.dataset.c;save();stopAudio();renderReader()});
+}
+function renderReader(){
+  renderTabs();
+  const c=CH.find(x=>x.n==S.chap);
+  let h=`<h2>${c.n?`<span class="mono" style="font-size:18px;color:var(--brass)">Kapitel ${c.n}</span><br>`:""}${esc(c.de)}<small>${esc(c.tr)}</small></h2>`;
+  rd.sents=[];
+  c.items.forEach(s=>{
+    if(s.t==="@"){const sp=SPK[s.sp];h+=`<div class="charhead"><div class="avatar" style="background:${sp[1]}">${sp[0][0]}</div>${esc(sp[0])}</div>`;return}
+    if(s.t==="T")return;
+    const i=rd.sents.length;rd.sents.push(s);
+    const sp=SPK[s.sp];
+    const who=(s.t==="N"&&c.n!==0)||!sp||c.n===0?"":`<span style="color:${sp[1]}">${esc(sp[0])}${s.t==="C"?" ✉":s.t==="P"?" ☎":""}:</span>`;
+    let txt=wrapWords(s.de);
+    if(s.t==="C")txt=`<span class="bub">${txt}</span>`;
+    h+=`<div class="s ${s.t} ${s.t==="C"?(s.sp==="Laura"?"right":"left"):""}" data-i="${i}"><div class="who">${who}</div><div class="txt">${txt}<div class="tr">${esc(s.tr)}</div></div><button class="pb" title="Bu cümleyi dinle">▶</button></div>`;
+  });
+  h+=`<p class="muted" style="margin-top:18px">💡 Bir cümlenin Türkçesini görmek için cümleye (kelimelerin dışına) dokun.</p>`;
+  const page=$("#page");page.innerHTML=h;
+  const all=c.items.filter(s=>s.t!=="@");
+  rd.range=[Math.max(0,all[0].a-0.6),all[all.length-1].b+0.4];rd.cur=-1;
+  setSrc(c.audio);
+  $$(".s",page).forEach(el=>{
+    const s=rd.sents[+el.dataset.i];
+    $(".pb",el).onclick=e=>{e.stopPropagation();rd.stoppedAt=+el.dataset.i;playClip(c.audio,s.a,s.b)};
+    el.onclick=e=>{if(e.target.closest(".w"))return;el.classList.toggle("tropen")};
+  });
+  page.classList.toggle("showtr",!!S.showTr);$("#pTr").classList.toggle("on",!!S.showTr);
+  // words of chapter
+  const ws=V.filter(v=>v.ch===c.n);
+  $("#chapWords").innerHTML=ws.map(v=>`<button class="chip" data-w="${esc(v.w)}">${v.a?`<span class="art-${v.a}">${v.a}</span> `:""}${esc(v.w)}</button>`).join("")||"<span class='muted'>—</span>";
+  $$("#chapWords .chip").forEach(b=>b.onclick=()=>{
+    const w=b.dataset.w;say((b.textContent));
+    const root=nz(w).slice(0,Math.max(4,nz(w).length-2));
+    const hit=$$(".w",page).find(x=>nz(x.dataset.w).startsWith(root));
+    if(hit){hit.scrollIntoView({block:"center",behavior:"smooth"});hit.classList.add("flash");setTimeout(()=>hit.classList.remove("flash"),1500)}
+  });
+  $("#chapTip").innerHTML=TIPS[c.n]||"";
+  onTime();
+}
+function fmt(t){t=Math.max(0,t);return Math.floor(t/60)+":"+String(Math.floor(t%60)).padStart(2,"0")}
+function onTime(){
+  const t=aud.currentTime||0,[a,b]=rd.range;
+  if(!$("#v-lesen").classList.contains("on")&&!aud.paused)return;
+  $("#pFill").style.width=Math.min(100,Math.max(0,(t-a)/(b-a)*100))+"%";
+  $("#pTime").textContent=fmt(t-a)+" / "+fmt(b-a);
+  let cur=-1;rd.sents.forEach((s,i)=>{if(t>=s.a-0.05&&t<s.b+0.1)cur=i});
+  if(cur!==rd.cur){
+    if(rd.stop&&clipEnd==null&&!aud.paused&&rd.cur>=0&&cur!==rd.cur&&rd.stoppedAt!==rd.cur){rd.stoppedAt=rd.cur;aud.pause();aud.currentTime=rd.sents[rd.cur].b;return}
+    rd.cur=cur;$$("#page .s").forEach(el=>el.classList.toggle("now",+el.dataset.i===cur));
+    if(cur>=0&&!aud.paused){const el=$(`#page .s[data-i="${cur}"]`);const r=el.getBoundingClientRect();if(r.top<190||r.bottom>innerHeight-40)el.scrollIntoView({block:"center",behavior:"smooth"})}
+  }
+  if(!aud.paused&&clipEnd==null&&t>=b){aud.pause()}
+}
+function updPlayBtn(){$("#pPlay").textContent=aud.paused?"▶":"❚❚"}
+function initPlayer(){
+  $("#pPlay").onclick=()=>{
+    const c=CH.find(x=>x.n==S.chap);setSrc(c.audio);
+    if(!aud.paused){aud.pause();return}
+    clipEnd=null;clipCb=null;
+    let t=aud.currentTime;if(t<rd.range[0]||t>=rd.range[1]-0.3)t=rd.range[0];
+    rd.stoppedAt=-1;seekPlay(t);
+  };
+  $("#pBar").onclick=e=>{const r=e.currentTarget.getBoundingClientRect();const f=(e.clientX-r.left)/r.width;const t=rd.range[0]+f*(rd.range[1]-rd.range[0]);clipEnd=null;rd.stoppedAt=-1;ready.then(()=>{aud.currentTime=t;onTime()})};
+  $("#pRate").onchange=e=>{aud.playbackRate=+e.target.value};
+  aud.addEventListener("loadedmetadata",()=>{aud.playbackRate=+$("#pRate").value});
+  $("#pStop").onclick=e=>{rd.stop=!rd.stop;e.currentTarget.classList.toggle("on",rd.stop);toast(rd.stop?"Her cümleden sonra durur – ▶ ile devam":"Kesintisiz okuma")};
+  $("#pTr").onclick=e=>{S.showTr=!S.showTr;save();$("#page").classList.toggle("showtr",S.showTr);e.currentTarget.classList.toggle("on",S.showTr)};
+}
+
+/* ---------- vocab ---------- */
+let vf="all",deck=[],fcI=null;
+function vDisp(v){return (v.a?v.a+" ":"")+v.w}
+function renderVocab(){
+  const chs=[["all","Hepsi"],...CH.map(c=>[c.n,c.n?"K"+c.n:"Kişiler"])];
+  $("#vFilter").innerHTML=chs.map(([k,l])=>`<button class="pill ${String(vf)===String(k)?"on":""}" data-k="${k}">${l}</button>`).join("");
+  $$("#vFilter button").forEach(b=>b.onclick=()=>{vf=b.dataset.k==="all"?"all":+b.dataset.k;renderVocab();newDeck()});
+  const q=nz($("#vSearch").value);
+  const list=V.filter(v=>(vf==="all"||v.ch===vf)&&(!q||nz(v.w+" "+v.tr).includes(q)));
+  $("#vGrid").innerHTML=list.map(v=>`<div class="vcard"><div><div class="d">${v.a?`<span class="art-${v.a}">${v.a}</span> `:""}${esc(v.w)}${v.pl?` <span class="muted">(${esc(v.pl)})</span>`:""}</div><div class="t">${esc(v.tr)} ${S.known[v.w]?"✓":""}</div></div><button data-s="${esc(vDisp(v))}">🔊</button></div>`).join("");
+  $$("#vGrid button").forEach(b=>b.onclick=()=>say(b.dataset.s));
+}
+function newDeck(){deck=shuffle(V.filter(v=>(vf==="all"||v.ch===vf)&&!S.known[v.w]));showCard()}
+function showCard(){
+  const f=$("#fcard");f.classList.remove("flip");
+  if(!deck.length){$("#fcF").innerHTML="Hepsini biliyorsun! 🎉";$("#fcB").innerHTML="";$("#fcInfo").textContent="";return}
+  const v=deck[0];
+  $("#fcF").innerHTML=`<div>${v.a?`<span class="art-${v.a}">${v.a}</span> `:""}${esc(v.w)}</div>`;
+  $("#fcB").innerHTML=`<div>${esc(v.tr)}${v.ex?`<div style="font-size:16px;margin-top:10px;opacity:.85">„${esc(v.ex)}“</div>`:""}</div>`;
+  $("#fcInfo").textContent="· kalan "+deck.length;
+}
+function initVocab(){
+  $("#vSearch").oninput=renderVocab;
+  $("#fcard").onclick=()=>$("#fcard").classList.toggle("flip");
+  $("#fcFlip").onclick=()=>$("#fcard").classList.toggle("flip");
+  $("#fcSay").onclick=()=>deck[0]&&say(vDisp(deck[0]));
+  $("#fcAgain").onclick=()=>{if(deck.length){deck.push(deck.shift());showCard()}};
+  $("#fcKnow").onclick=()=>{if(!deck.length)return;const v=deck.shift();S.known[v.w]=1;save();award("fc:"+v.w,1);showCard();renderVocab()};
+  renderVocab();newDeck();
+}
+
+/* ---------- generic exercise widgets ---------- */
+// accept: array of acceptable answers (strings, compared with nz) or regex strings starting with "re:"
+function accepts(val,acc){const v=nz(val);if(!v)return false;return acc.some(a=>a.startsWith("re:")?new RegExp(a.slice(3)).test(v):nz(a)===v)}
+function inputHTML(key,w=130,ph=""){return `<input class="blank" data-k="${key}" style="width:${w}px" placeholder="${ph}" autocomplete="off" autocapitalize="off" spellcheck="false">`}
+function bindPersist(root){$$("[data-k]",root).forEach(el=>{const k=el.dataset.k;if(S.ws[k]!=null){if(el.type==="checkbox")el.checked=!!S.ws[k];else el.value=S.ws[k]}el.addEventListener(el.type==="checkbox"?"change":"input",()=>{S.ws[k]=el.type==="checkbox"?el.checked:el.value;el.classList.remove("ok","bad");save()})})}
+function markInput(el,ok){el.classList.remove("ok","bad");el.classList.add(ok?"ok":"bad")}
+
+/* ---------- grammar ---------- */
+const GR=[
+ {id:"praesens",t:"Fiil çekimi (Präsens)",rule:`<h3>Fiil kişiye göre değişir</h3>
+  <table><tr><th></th><th>sein</th><th>haben</th><th>kommen</th><th>fahren</th></tr>
+  <tr><td>ich</td><td>bin</td><td>habe</td><td>komm<span class=hl>e</span></td><td>fahr<span class=hl>e</span></td></tr>
+  <tr><td>du</td><td>bist</td><td>hast</td><td>komm<span class=hl>st</span></td><td>f<span class=hl>ä</span>hr<span class=hl>st</span></td></tr>
+  <tr><td>er/sie/es</td><td>ist</td><td>hat</td><td>komm<span class=hl>t</span></td><td>f<span class=hl>ä</span>hr<span class=hl>t</span></td></tr>
+  <tr><td>wir</td><td>sind</td><td>haben</td><td>komm<span class=hl>en</span></td><td>fahr<span class=hl>en</span></td></tr>
+  <tr><td>ihr</td><td>seid</td><td>habt</td><td>komm<span class=hl>t</span></td><td>fahr<span class=hl>t</span></td></tr>
+  <tr><td>sie/Sie</td><td>sind</td><td>haben</td><td>komm<span class=hl>en</span></td><td>fahr<span class=hl>en</span></td></tr></table>
+  <p>Dikkat: <b>fahren → du fährst</b>, <b>helfen → er hilft</b>, <b>sehen → man sieht</b>, <b>nehmen → sie nimmt</b> (kök sesli harfi değişir).</p>`,
+  ex:["Sie ist zwölf und lebt in München.","Habt ihr viele Gäste?","Du fährst mit dem Bus Nummer 12"],
+  type:"fill",items:[["Laura ___ zwölf Jahre alt.","sein",["ist"]],["Simon ___ in den Ferien seinem Onkel.","helfen",["hilft"]],["Oder ___ du keine Zeit?","haben",["hast"]],["___ ihr viele Gäste?","haben",["habt"]],["Ich ___ bis um zwölf.","üben",["übe"]],["Du ___ mit dem Bus Nummer 12.","fahren",["fährst"]],["Opa Breuer ___ Moritz sehr.","lieben",["liebt"]],["Wir ___ jetzt zur Reinigung.","gehen",["gehen"]],["Clarissa ___ ein Problem mit ihrem Computer.","haben",["hat"]],["Kati ___ krank.","sein (geçmiş: war)",["war"]]]},
+ {id:"trennbar",t:"Ayrılabilen fiiller",rule:`<h3>Ön ek cümlenin sonuna kaçar!</h3>
+  <p><b>ab|holen</b> (almak), <b>an|kommen</b> (varmak), <b>zurück|kommen</b> (geri dönmek), <b>an|rufen</b> (aramak), <b>an|fangen</b> (başlamak), <b>auf|stehen</b> (kalkmak), <b>zu|hören</b> (dinlemek), <b>zurück|geben</b> (geri vermek)</p>
+  <div class="frame"><span>Simon</span><span class="v">holt</span><span>Laura am Bahnhof</span><span class="v">ab</span></div>
+  <div class="frame"><span>Wann</span><span class="v">kommt</span><span>dein Zug</span><span class="v">an</span><span>?</span></div>
+  <p>Fiil 2. sırada, ön ek <b>en sonda</b>: Türkçedeki gibi bir “kıskaç” (Satzklammer) oluşur. Modal fiil varsa fiil bütün kalır: <i>Ich will Onkel Sven <b>anrufen</b>.</i></p>`,
+  ex:["Simon holt Laura am Bahnhof ab.","Wann kommt dein Zug an?","Die Ausstellung fängt heute um drei an","Rufst du jetzt Sven an?"],
+  type:"order",items:[["Simon holt Laura am Bahnhof ab.","Simon Laura'yı istasyondan alıyor."],["Wann kommt dein Zug an?","Trenin ne zaman varıyor?"],["Heute kommt Laura aus Wien zurück.","Bugün Laura Viyana'dan dönüyor."],["Die Ausstellung fängt heute um drei an.","Sergi bugün saat üçte başlıyor."],["Rufst du jetzt Sven an?","Şimdi Sven'i arıyor musun?"],["Sie holen die Jacke ab.","Ceketi alıyorlar."]]},
+ {id:"modal",t:"Modal fiiller",rule:`<h3>können · möchten · wollen · müssen · dürfen</h3>
+  <table><tr><th></th><th>können</th><th>möchten</th><th>wollen</th><th>müssen</th><th>dürfen</th></tr>
+  <tr><td>ich</td><td>kann</td><td>möchte</td><td>will</td><td>muss</td><td>darf</td></tr>
+  <tr><td>du</td><td>kannst</td><td>möchtest</td><td>willst</td><td>musst</td><td>darfst</td></tr>
+  <tr><td>er/sie</td><td>kann</td><td>möchte</td><td>will</td><td>muss</td><td>darf</td></tr>
+  <tr><td>wir/sie</td><td>können</td><td>möchten</td><td>wollen</td><td>müssen</td><td>dürfen</td></tr></table>
+  <div class="frame"><span>Du</span><span class="v">kannst</span><span>auch meinen Onkel Sven</span><span class="v">kennenlernen</span></div>
+  <p>Modal fiil 2. sırada çekimlenir, asıl fiil <b>mastar hâlinde en sonda</b>. <b>können</b> = -ebilmek, <b>möchten</b> = istemek (kibar), <b>wollen</b> = istemek (kararlı), <b>müssen</b> = zorunda olmak, <b>dürfen</b> = izni olmak.</p>`,
+  ex:["Und du kannst auch meinen Onkel Sven kennenlernen.","Darf ich vielleicht mal zuhören?","Ich will Onkel Sven anrufen.","jetzt muss ich aber nach Hause"],
+  type:"choice",items:[["Laura ___ ein Eis essen.",["möchte","möchtest","möchten"],0],["Dann ___ ich dir alles zeigen.",["kann","kannst","können"],0],["___ ich vielleicht mal zuhören?",["Darf","Darfst","Dürfen"],0],["Simon, ___ du mir helfen?",["kann","kannst","können"],1],["Im Hotel ___ wir sie ihm sofort zurückgeben.",["muss","müsst","müssen"],2],["Moritz ___ auf die Royal Academy of Music.",["will","willst","wollen"],0],["Mit welchem Bus ___ ich da fahren?",["muss","musst","müssen"],0],["Sie ___ die Münzen verkaufen.",["will","wollt","wollen"],2]],
+  order:[["Du kannst auch meinen Onkel Sven kennenlernen.","Amcam Sven'le de tanışabilirsin."],["Ich will Onkel Sven anrufen.","Sven amcamı aramak istiyorum."],["Darf ich vielleicht mal zuhören?","Biraz dinleyebilir miyim?"]]},
+ {id:"wfragen",t:"Soru kelimeleri",rule:`<h3>W-Fragen</h3>
+  <table><tr><td class=hl>Wer?</td><td>kim?</td><td class=hl>Was?</td><td>ne?</td></tr>
+  <tr><td class=hl>Wo?</td><td>nerede?</td><td class=hl>Woher?</td><td>nereden?</td></tr>
+  <tr><td class=hl>Wann?</td><td>ne zaman?</td><td class=hl>Warum?</td><td>neden?</td></tr>
+  <tr><td class=hl>Wie?</td><td>nasıl?</td><td class=hl>Welch-?</td><td>hangi?</td></tr></table>
+  <div class="frame"><span class="v">Wann</span><span class="v">kommt</span><span>dein Zug an?</span></div>
+  <p>Soru kelimesi başta, fiil hemen arkasında. <b>Evet/hayır sorusunda</b> fiil en başa geçer: <i><b>Bist</b> du da? <b>Holt</b> dich deine Mutter ab?</i></p>`,
+  ex:["Wann kommt dein Zug an?","Woher hat denn Opa Breuer die Münzen?","Warum kommst du nicht morgen ins Hotel?","Mit welchem Bus muss ich da fahren?"],
+  type:"choice",items:[["___ kommt dein Zug an? – Um 18:12 Uhr.",["Wo","Wann","Wer"],1],["___ ist das Hotel Sommer? – In der Ringstraße 53.",["Wo","Woher","Wie"],0],["___ hat Opa Breuer die Münzen?",["Wann","Woher","Wer"],1],["___ kommst du nicht morgen ins Hotel?",["Was","Warum","Wo"],1],["___ machst du denn um elf Uhr in der Bar?",["Was","Wer","Wie"],0],["Hallo Moritz, ___ geht's?",["was","wie","wo"],1],["Mit ___ Bus muss ich da fahren?",["welchem","wann","wer"],0],["___ ist der Dieb? – Vielleicht Moritz?",["Wer","Was","Wo"],0]]},
+ {id:"possessiv",t:"İyelik: mein, dein, sein, ihr",rule:`<h3>Kimin?</h3>
+  <table><tr><th>kişi</th><th>iyelik</th><th>der Onkel</th><th>die Mutter</th><th>die Münzen (çoğ.)</th></tr>
+  <tr><td>ich</td><td>mein</td><td>mein Onkel</td><td>mein<span class=hl>e</span> Mutter</td><td>mein<span class=hl>e</span> Münzen</td></tr>
+  <tr><td>du</td><td>dein</td><td>dein Onkel</td><td>dein<span class=hl>e</span> Mutter</td><td>dein<span class=hl>e</span> Münzen</td></tr>
+  <tr><td>er (Simon)</td><td>sein</td><td>sein Onkel</td><td>sein<span class=hl>e</span> Mutter</td><td>sein<span class=hl>e</span> Münzen</td></tr>
+  <tr><td>sie (Laura)</td><td>ihr</td><td>ihr Onkel</td><td>ihr<span class=hl>e</span> Mutter</td><td>ihr<span class=hl>e</span> Münzen</td></tr></table>
+  <p>Eril isim nesne olunca: <b>meinen</b> Onkel kennenlernen (Akkusativ). <b>mit</b>'ten sonra: mit <b>seinem</b> Opa, mit <b>ihrem</b> Computer (Dativ).</p>`,
+  ex:["Holt dich deine Mutter vom Bahnhof ab?","Das ist mein Onkel Sven.","Sie hat ein Problem mit ihrem Computer.","Kannst du seine Jacke abholen"],
+  type:"choice",items:[["Holt dich ___ Mutter vom Bahnhof ab?",["dein","deine","deinen"],1],["Hallo, Laura. Das ist ___ Onkel Sven. (Simon)",["mein","meine","meinen"],0],["Du kannst auch ___ Onkel Sven kennenlernen.",["mein","meine","meinen"],2],["Kannst du ___ Jacke abholen? (Opa Breuer'in)",["seine","ihre","deine"],0],["Clarissa hat ein Problem mit ___ Computer.",["seinem","ihrem","ihre"],1],["Moritz geht mit ___ Opa spazieren.",["seinem","ihrem","sein"],0],["Jetzt kann ich endlich ___ Mode-Sites sehen.",["mein","meine","meinen"],1],["Wann kommt ___ Zug an?",["dein","deine","deinen"],0]]},
+ {id:"uhrzeit",t:"Saat ve zaman",rule:`<h3>Wie spät ist es? – Wann?</h3>
+  <p><b>um</b> + saat = saat …'de: <i>um elf, um drei, um 18:12 Uhr</i><br><b>bis</b> = …'e kadar: <i>bis um zwölf, bis morgen um sechs</i></p>
+  <table><tr><td>2:00</td><td>zwei (Uhr)</td></tr><tr><td>2:15</td><td><span class=hl>Viertel nach</span> zwei</td></tr><tr><td>2:30</td><td><span class=hl>halb</span> drei (!)</td></tr><tr><td>1:45</td><td><span class=hl>Viertel vor</span> zwei</td></tr><tr><td>18:12</td><td>achtzehn Uhr zwölf (resmî)</td></tr></table>
+  <p><b>halb drei</b> = üçe yarım var → 2:30! Günler: <i>am Dienstag, am Donnerstag, am Freitagmorgen</i>.</p>`,
+  ex:["Um 18:12 Uhr. Am Ostbahnhof.","Viertel vor zwei. Warum?","Ich übe bis um zwölf.","Die Ausstellung fängt heute um drei an"],
+  type:"clock",items:[[11,0,["um elf","um zwölf","um eins"],0,"Laura otele ne zaman geliyor?"],[13,45,["Viertel nach zwei","Viertel vor zwei","halb zwei"],1,"Sergiden önce saat kaç?"],[15,0,["um drei","um sechs","um zwei"],0,"Sergi bugün ne zaman başlıyor?"],[12,0,["um elf","um zwölf","um zehn"],1,"Moritz ne zamana kadar çalışıyor?"],[18,0,["um acht","um sechs","um sieben"],1,"Sergi yarın ne zaman bitiyor?"],[14,30,["halb zwei","halb drei","Viertel nach zwei"],1,"Dikkat: halb!"],[16,15,["Viertel vor vier","Viertel nach vier","halb fünf"],1,""]]},
+ {id:"wohin",t:"Nerede? Nereye? Nereden?",rule:`<h3>Wo? · Wohin? · Woher?</h3>
+  <table><tr><th>Wo? (nerede)</th><th>Wohin? (nereye)</th><th>Woher? (nereden)</th></tr>
+  <tr><td>im Hotel</td><td>ins Hotel</td><td>aus Wien</td></tr>
+  <tr><td>in der Bar</td><td>in die Bar</td><td>vom Bahnhof</td></tr>
+  <tr><td>am Bahnhof</td><td>zur Reinigung / zum Kiosk</td><td>vom Hotel</td></tr>
+  <tr><td>zu Hause</td><td>nach Hause / nach London</td><td>aus München</td></tr></table>
+  <p><b>im</b> = in dem, <b>ins</b> = in das, <b>zur</b> = zu der, <b>zum</b> = zu dem, <b>vom</b> = von dem. Ulaşım: <b>mit dem Bus</b>, <b>zu Fuß</b> (yürüyerek).</p>`,
+  ex:["Warum kommst du nicht morgen ins Hotel?","Ich gehe in die Bar zu Moritz.","Laura möchte nicht sofort nach Hause fahren","Nein, es sind nur 20 Minuten zu Fuß."],
+  type:"choice",items:[["Laura möchte nicht sofort ___ Hause fahren.",["nach","zu","in"],0],["Simon bringt die Jacke ___ Reinigung.",["zum","zur","im"],1],["Warum kommst du nicht morgen ___ Hotel?",["im","ins","am"],1],["Heute kommt Laura ___ Wien zurück.",["aus","nach","zu"],0],["Simon holt Laura ___ Bahnhof ab.",["am","ins","zur"],0],["Da ___ Hotel-Café sitzt Mister Brown.",["im","ins","zum"],0],["Dann gehen sie ___ Kiosk.",["zur","zum","im"],1],["Es sind nur 20 Minuten zu ___.",["Bus","Fuß","Hause"],1]]},
+ {id:"negation",t:"nicht mi, kein mi?",rule:`<h3>Olumsuzluk</h3>
+  <p><b>kein / keine</b> → isimden önce, “hiç … yok” (ein yerine): <i>Hast du <b>keine</b> Zeit? Das ist <b>kein</b> Problem. <b>Kein</b> Wort!</i></p>
+  <p><b>nicht</b> → fiili, sıfatı veya cümleyi olumsuz yapar: <i>Ich möchte <b>nicht</b> so früh aufstehen. Er kann <b>nicht</b> gut laufen.</i></p>
+  <p><b>Doch!</b> = olumsuz soruya olumlu cevap: <i>Hast du keine Lust? – <b>Doch</b>, ich komme gerne!</i></p>`,
+  ex:["Oder hast du keine Zeit?","Ich komme gerne, aber ich möchte nicht so früh aufstehen.","Natürlich, das ist kein Problem.","Er kann nicht der Dieb sein!"],
+  type:"choice",items:[["Oder hast du ___ Zeit?",["nicht","keine","kein"],1],["Ich möchte ___ so früh aufstehen.",["nicht","kein","keine"],0],["Natürlich, das ist ___ Problem.",["nicht","kein","keine"],1],["Er kann ___ der Dieb sein!",["kein","nicht","keine"],1],["Und du sagst ___ Wort, zu niemandem.",["kein","nicht","keine"],0],["Die Schule kenne ich ___.",["kein","nicht","keine"],1],["Hast du keine Lust? – ___, ich komme gerne!",["Ja","Doch","Nein"],1]]}
+];
+let gCur=S.gCur||"trennbar";
+function renderGrammar(){
+  $("#gNav").innerHTML=GR.map((g,i)=>`<button class="pill ${g.id===gCur?"on":""}" data-g="${g.id}">${i+1}. ${g.t}</button>`).join("");
+  $$("#gNav button").forEach(b=>b.onclick=()=>{gCur=b.dataset.g;S.gCur=gCur;save();renderGrammar()});
+  const g=GR.find(x=>x.id===gCur);
+  let exs=g.ex.map(t=>{const s=findSent(t);return s?`<div class="ex"><button class="ico" data-p="${esc(t)}">▶</button><div><div>${wrapWords(s.de)}</div><div class="tr">${esc(s.tr)}</div></div></div>`:""}).join("");
+  let h=`<div class="gbox stagger"><div class="rule">${g.rule}</div><div class="card"><h3>Kitaptan örnekler</h3>${exs}<p class="muted">▶ = Orijinal kayıttan dinle. Kelimeye dokun = anlamı.</p></div></div>`;
+  h+=`<div class="card" style="margin-top:18px" id="gEx"></div>`;
+  if(g.order)h+=`<div class="card" style="margin-top:18px" id="gEx2"></div>`;
+  $("#gBody").innerHTML=h;
+  $$("#gBody [data-p]").forEach(b=>b.onclick=()=>playSent(findSent(b.dataset.p)));
+  const box=$("#gEx");
+  if(g.type==="fill")exFill(box,g);
+  if(g.type==="choice")exChoice(box,g.items,"g:"+g.id);
+  if(g.type==="order")exOrder(box,g.items,"g:"+g.id);
+  if(g.type==="clock")exClock(box,g);
+  if(g.order)exOrder($("#gEx2"),g.order,"g:"+g.id+"o");
+}
+function exFill(box,g){
+  box.innerHTML=`<h3>Alıştırma: Fiili doğru çekimle yaz</h3><ol class="items">${g.items.map((it,i)=>`<li><span class="n">${i+1}</span>${esc(it[0]).replace("___",inputHTML("gf:"+g.id+i,110))} <span class="muted">(${esc(it[1])})</span><span class="mark"></span></li>`).join("")}</ol><div class="tools"><button class="btn">Kontrol et</button><button class="btn ghost sm">Cevapları göster</button><span class="stat"></span></div>`;
+  bindPersist(box);
+  const [chk,show]=$$(".tools button",box);
+  chk.onclick=()=>{let ok=0;g.items.forEach((it,i)=>{const el=$(`[data-k="gf:${g.id}${i}"]`,box);const r=accepts(el.value,it[2]);markInput(el,r);if(r){ok++;award("gf:"+g.id+i)}});$(".stat",box).textContent=ok+" / "+g.items.length};
+  show.onclick=()=>g.items.forEach((it,i)=>{const el=$(`[data-k="gf:${g.id}${i}"]`,box);if(!accepts(el.value,it[2]))el.placeholder=it[2][0];});
+}
+function exChoice(box,items,key,title){
+  box.innerHTML=`<h3>${title||"Alıştırma: Doğru seçeneğe dokun"}</h3><ol class="items">${items.map((it,i)=>`<li data-i="${i}"><span class="n">${i+1}</span><span>${esc(it[0]).replace("___",'<b class="gap" style="display:inline-block;min-width:70px;border-bottom:2px solid var(--line);text-align:center">…</b>')}</span><span class="row" style="gap:6px;margin-left:auto">${it[1].map((o,j)=>`<button class="pill" data-j="${j}">${esc(o)}</button>`).join("")}</span></li>`).join("")}</ol><div class="tools"><span class="stat"></span></div>`;
+  let score=0;
+  $$("li",box).forEach(li=>{const i=+li.dataset.i,it=items[i];let done=false;
+    $$("button",li).forEach(b=>b.onclick=()=>{if(done)return;const j=+b.dataset.j;
+      if(j===it[2]){done=true;b.style.background="var(--ok)";b.style.color="#fff";$(".gap",li).textContent=it[1][j];$(".gap",li).style.color="var(--ok)";score++;award(key+":"+i);$(".stat",box).textContent=score+" / "+items.length+" doğru"}
+      else{b.style.background="#fbe5e2";b.style.textDecoration="line-through"}})});
+}
+function exOrder(box,items,key){
+  let i=0;
+  const draw=()=>{
+    const it=items[i];const words=it[0].replace(/([?.!])$/,"").split(" ");const punct=(it[0].match(/[?.!]$/)||[""])[0];
+    let tray=shuffle(words.map((w,k)=>({w,k})));if(tray.map(x=>x.w).join(" ")===words.join(" "))tray=tray.reverse();
+    let out=[];
+    box.innerHTML=`<h3>Cümle kur (${i+1}/${items.length})</h3><p class="tr">${esc(it[1])}</p><div class="puzzle"><div class="out"></div><div class="tray" style="margin-top:8px"></div></div><div class="tools"><button class="btn">Kontrol et</button><button class="btn ghost sm">🔊 Dinle</button><button class="btn ghost sm">Sonraki →</button><span class="stat"></span></div>`;
+    const O=$(".out",box),T=$(".tray",box);
+    const r=()=>{O.innerHTML=out.map((x,k)=>`<button data-k="${k}">${esc(x.w)}</button>`).join("")+(out.length?`<span style="align-self:center;font-size:20px">${punct}</span>`:"");T.innerHTML=tray.map((x,k)=>`<button data-k="${k}">${esc(x.w)}</button>`).join("");
+      $$("button",O).forEach(b=>b.onclick=()=>{tray.push(out.splice(+b.dataset.k,1)[0]);r()});$$("button",T).forEach(b=>b.onclick=()=>{out.push(tray.splice(+b.dataset.k,1)[0]);r()})};r();
+    const [chk,lis,nx]=$$(".tools button",box);
+    chk.onclick=()=>{const ok=out.map(x=>x.w).join(" ")===words.join(" ");$(".stat",box).innerHTML=ok?'<span style="color:var(--ok)">Richtig! ✓</span>':(tray.length?'<span style="color:var(--hint)">Tüm kelimeleri kullan</span>':'<span style="color:var(--bad)">Sırayı tekrar düşün: fiil 2. sırada!</span>');if(ok)award(key+":"+i)};
+    lis.onclick=()=>{const s=findSent(it[0]);s?playSent(s):say(it[0])};
+    nx.onclick=()=>{i=(i+1)%items.length;draw()};
+  };draw();
+}
+function clockSVG(h,m){const a=(h%12+m/60)*30,b=m*6;const hand=(ang,len,w,c)=>`<line x1="50" y1="50" x2="${50+len*Math.sin(ang*Math.PI/180)}" y2="${50-len*Math.cos(ang*Math.PI/180)}" stroke="${c}" stroke-width="${w}" stroke-linecap="round"/>`;
+  let ticks="";for(let i=0;i<12;i++){const r=i*30*Math.PI/180;ticks+=`<line x1="${50+40*Math.sin(r)}" y1="${50-40*Math.cos(r)}" x2="${50+44*Math.sin(r)}" y2="${50-44*Math.cos(r)}" stroke="#7a1f2b" stroke-width="${i%3?1.5:3}"/>`}
+  return `<svg viewBox="0 0 100 100" width="96" height="96"><circle cx="50" cy="50" r="47" fill="#fffaf0" stroke="#c8962e" stroke-width="3"/>${ticks}${hand(a,24,4,"#1f2433")}${hand(b,36,2.5,"#7a1f2b")}<circle cx="50" cy="50" r="3" fill="#7a1f2b"/></svg>`}
+function exClock(box,g){
+  box.innerHTML=`<h3>Alıştırma: Saati Almanca seç</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px">${g.items.map((it,i)=>`<div class="card" data-i="${i}" style="text-align:center;padding:12px">${clockSVG(it[0],it[1])}<div class="muted" style="min-height:22px">${esc(it[4])}</div><div class="row" style="justify-content:center;gap:6px;margin-top:6px">${it[2].map((o,j)=>`<button class="pill" data-j="${j}">${esc(o)}</button>`).join("")}</div></div>`).join("")}</div>`;
+  $$(".card[data-i]",box).forEach(c=>{const it=g.items[+c.dataset.i];let done=false;$$("button",c).forEach(b=>b.onclick=()=>{if(done)return;if(+b.dataset.j===it[3]){done=true;b.style.background="var(--ok)";b.style.color="#fff";award("clk:"+c.dataset.i);say(it[2][it[3]])}else{b.style.background="#fbe5e2";b.style.textDecoration="line-through"}})});
+}
+
+/* ---------- worksheet ---------- */
+const WS_STATE={};
+function wsTask(n,title,tri,body){return `<div class="card task" id="ue${n}"><div class="hd"><div class="num">${n}</div><div><h3>${title}</h3><div class="tri">${tri}</div></div></div>${body}<div class="tools"><button class="btn" data-act="check">Kontrol et</button><button class="btn ghost sm" data-act="hint">İpucu</button><button class="btn ghost sm" data-act="show">Cevabı göster</button><span class="stat"></span></div><div class="fb"></div></div>`}
+const HOTELWORDS=["zimmer","rezeption","schluessel","gast","gaeste","bar","restaurant","cafe","hotel cafe","hotelcafe","fruehstueck","fruehstuecken","bett","koffer","handtuch","dusche","bad","badezimmer","lift","aufzug","telefon","wlan","hotel wlan","internet","reinigung","rechnung","pool","schwimmbad","einzelzimmer","doppelzimmer","zimmernummer","hotelzimmer","kellner","koch","kueche","empfang","portier","rezeptionist","gepaeck","tasche","taschen","schlafen","uebernachten","uebernachtung","buchen","reservieren","reservierung","sauna","fenster","balkon","fernseher","tv","toilette","wc","dusche","seife","kissen","decke","speisesaal","fitnessraum","parkplatz","garage","minibar","lobby","halle","personal","chef","hund","onkel"];
+const BOOKHOTEL=["zimmer","rezeption","schluessel","gast","gaeste","bar","restaurant","hotel cafe","hotelcafe","cafe","fruehstuecken","fruehstueck","reinigung","hotel wlan","wlan","hotelzimmer","telefon","internet"];
+function renderWS(){
+  let h="";
+  h+=`<div class="kap"><h2>Kapitel 1: Laura kommt</h2><span class="badge">S. 6</span></div>`;
+  // Ü1
+  const leaves=[[50,12],[86,22],[93,55],[80,86],[50,92],[18,82],[8,48],[16,18]];
+  h+=wsTask(1,"Im Hotel. Ergänzt den Wortigel mit Wörtern zum Thema <i>Hotel</i>.","Otelde. ‘Hotel’ konusuyla ilgili kelimelerle kelime kirpisini (zihin haritası) tamamla.",
+   `<div class="igel"><svg viewBox="0 0 100 100" preserveAspectRatio="none">${leaves.map(p=>`<line x1="50" y1="50" x2="${p[0]}" y2="${p[1]}" stroke="#7a1f2b" stroke-width="1.5" vector-effect="non-scaling-stroke"/>`).join("")}</svg><div class="center">Hotel</div>${leaves.map((p,i)=>`<div class="leaf" style="left:${p[0]}%;top:${p[1]}%">${i===5?'<span class="fixed">Zimmer</span>':inputHTML("w1_"+i,140,"…")}</div>`).join("")}</div><p class="muted">Kitapta geçen otel kelimeleri yeşil, kitapta geçmeyen ama doğru olanlar sarı yanar. En az 5 kelime bul!</p>`);
+  // Ü2
+  const u2=[["Laura kommt zurück aus München.","Laura kommt zurück aus Wien."],["Sie hat ihre Cousine Clarissa besucht.","Sie hat ihre Cousine Kati besucht."],["Simon ist der Bruder.","Simon ist der beste Freund (von Laura)."],["Laura kommt am Morgen in München an.","Laura kommt am Abend (um 18:12 Uhr) in München an."],["Lauras Mutter holt sie vom Bahnhof ab.","Simon holt sie vom Bahnhof ab."],["Laura und Simon telefonieren.","Laura und Simon schreiben Nachrichten (chatten)."]];
+  h+=wsTask(2,"Laura kommt zurück. Was ist falsch? Schreib die Sätze richtig.","Laura geri dönüyor. Ne yanlış? Cümleleri doğru yaz. (1. örnek)",
+   `<ol class="items">${u2.map((u,i)=>`<li style="display:block"><div><span class="n">${i+1}.</span> ${i===0?esc(u[0]).replace("München",'<span class="strike">München</span>'):esc(u[0])}</div>${i===0?`<div style="padding-left:30px;color:var(--wine)">→ ${esc(u[1])} ✓ <span class="muted">(Beispiel)</span></div>`:`<div style="padding-left:30px">→ ${inputHTML("w2_"+i,420,"Doğru cümleyi yaz…").replace('style="width:420px"','style="width:min(420px,100%)"')}<span class="mark"></span></div>`}</li>`).join("")}</ol>`);
+  h+=`<div class="kap"><h2>Kapitel 2: Im Eiscafé</h2><span class="badge">S. 7</span></div>`;
+  // Ü3
+  h+=wsTask(3,"Laura und Simon. Was weißt du schon über Laura und Simon?","Laura ve Simon hakkında neler biliyorsun? Tamamla. (Kitapta s. 4'e – Kişiler – tekrar bak.)",
+   `<div class="prof"><div class="pic" style="background:var(--laura)">L</div><ul>
+     <li>hat eine Cousine in Wien ✓</li>
+     <li>🍨 ${inputHTML("w3_l1",210,"… gern … (Ne yemeyi sever?)")}<span class="mark"></span></li>
+     <li>ist ${inputHTML("w3_l2",120)} alt<span class="mark"></span></li>
+     <li>lebt in ${inputHTML("w3_l3",150)}<span class="mark"></span></li>
+     <li>${inputHTML("w3_l4",210)} besucht<span class="mark"></span></li></ul></div>
+    <div class="prof"><div class="pic" style="background:var(--simon)">S</div><ul>
+     <li>ist ${inputHTML("w3_s1",120)} alt<span class="mark"></span></li>
+     <li>arbeitet in den Ferien ${inputHTML("w3_s2",170)}<span class="mark"></span></li>
+     <li>lebt in ${inputHTML("w3_s3",150)}<span class="mark"></span></li>
+     <li>spricht gern ${inputHTML("w3_s4",150)}<span class="mark"></span></li>
+     <li>sein Onkel ${inputHTML("w3_s5",260)}<span class="mark"></span></li></ul></div>`);
+  // Ü4
+  h+=wsTask(4,"Laura ist wieder in München. Beantworte die Fragen.","Laura yine Münih'te. Soruları cevapla.",
+   `<ol class="items"><li><span class="n">1.</span>Wo sind Laura und Simon? ${inputHTML("w4_1",230)}<span class="mark"></span></li><li><span class="n">2.</span>Wo ist das Hotel Sommer? ${inputHTML("w4_2",230)}<span class="mark"></span></li><li><span class="n">3.</span>Wann wollen Laura und Simon ins Hotel gehen? ${inputHTML("w4_3",230)}<span class="mark"></span></li></ol>`);
+  h+=`<div class="kap"><h2>Kapitel 3: Freitagmorgen im Hotel</h2><span class="badge">S. 8–10</span></div>`;
+  // Ü5
+  const rows=["UirtBarSelskuierSchlüsselqweasrjRezeptionPrese","nuuÖktRestaurantiiorpeerjgger","mentfrühstückenernselnleosenReuchtZimmerMorgeuinan"];
+  h+=wsTask(5,"Was gibt es in einem Hotel? Such die Wörter und ergänze die Sätze.","Bir otelde neler var? Kelimeleri bul (kelimenin ilk ve son harfine dokun) ve cümleleri tamamla.",
+   `<div class="ws" id="wsGrid">${rows.map((r,ri)=>`<div class="wr">${[...r].map((c,ci)=>`<div class="l" data-r="${ri}" data-c="${ci}">${c}</div>`).join("")}</div>`).join("")}</div>
+    <div class="found-list" id="foundList">${["Bar","Schlüssel","Rezeption","Restaurant","frühstücken","Zimmer"].map(w=>`<span class="chip" data-f="${w}">${"?".repeat(w.length)}</span>`).join("")}</div>
+    <ol class="items" style="margin-top:10px">
+     <li><span class="n">1.</span>Zuerst geht man zur ${inputHTML("w5_1",150)}.<span class="mark"></span></li>
+     <li><span class="n">2.</span>Dort bekommt man den ${inputHTML("w5_2",150)} 🔑 für sein ${inputHTML("w5_3",130)}.<span class="mark"></span></li>
+     <li><span class="n">3.</span>Am Morgen kann man ${inputHTML("w5_4",150)}.<span class="mark"></span></li>
+     <li><span class="n">4.</span>Zu Mittag isst man im ${inputHTML("w5_5",150)}.<span class="mark"></span></li>
+     <li><span class="n">5.</span>Am Abend kann man einen Cocktail 🍹 in der ${inputHTML("w5_6",120)} trinken.<span class="mark"></span></li></ol>`);
+  // Ü6
+  const L6=["Opa Breuer ist mit","Die beiden gehen jeden Tag","Moritz übt jeden Tag","Moritz möchte an der","Moritz und sein Opa"],R6=["haben nicht viel Geld.","in der Bar Gitarre.","zusammen spazieren.","seinem Enkel im Hotel.","Royal Academy of Music in London studieren."];
+  h+=wsTask(6,"Opa Breuer und Moritz. Was passt zusammen? Verbinde.","Breuer dede ve Moritz. Hangisi hangisiyle uyuyor? Eşleştir.",matchHTML("w6",L6,R6,{0:"d"}));
+  // Ü7
+  const N7=["Opa Breuer kommt zur Rezeption. Simon soll seine Jacke abholen und zur Reinigung bringen. Der Junge geht mit Laura zu Opa Breuers Zimmer. Dann bringen sie die Jacke zur Reinigung. Laura will den Bus nehmen, Simon zu Fuß gehen. In 20 Minuten sind sie da.","Opa Breuer ruft bei der Rezeption an. Simon muss jetzt arbeiten. Er soll Opa Breuers Jacke zur Reinigung bringen. Laura und Simon gehen zu seinem Zimmer. Sie holen die Jacke ab. Laura findet Opa Breuer und Moritz komisch, aber Simon findet sie nett. Dann fahren sie mit dem Bus zur Reinigung.","Opa Breuer ruft bei der Rezeption an. Simon soll seine Jacke abholen und zur Reinigung bringen. Laura kommt mit zu Opa Breuers Zimmer. Sie möchte ihn kennen lernen. Laura findet Opa Breuer und Moritz nett. Simon findet Moritz und Opa Breuer komisch. Dann gehen Simon und Laura zur Reinigung."];
+  h+=wsTask(7,"Zur Reinigung bitte! Welcher Text ist richtig? Kreuze an.","Temizlemeciye lütfen! Hangi metin doğru? İşaretle. (Kelimelere dokunarak anlamlarını görebilirsin.)",
+   `<div class="notes">${N7.map((t,i)=>`<div class="note" data-n="${i}"><b class="mono">${i+1}</b> ${wrapWords(t)}</div>`).join("")}</div>`);
+  h+=`<div class="kap"><h2>Kapitel 4: Die Goldmünzen</h2><span class="badge">S. 11–12</span></div>`;
+  // Ü8
+  const E8=[["G","Sie gehen zurück ins Hotel, sie wollen Onkel Sven alles erzählen."],["I","Sie bringen die Jacke zur Reinigung."],["Z","Laura und Simon gehen zur Reinigung."],["N","Sie diskutieren: Ist Opa Breuer ein Dieb?"],["T","Sie kaufen am Kiosk eine Zeitung für Onkel Sven."],["E","Sie finden zwei Münzen in Opa Breuers Jacke."],["U","Sie lesen von dem Chaos mit den Münzen im Museum."]];
+  h+=wsTask(8,"Die Münzen. Wann passiert das? Wie ist die Reihenfolge?","Sikkeler. Bu ne zaman oluyor? Sıralama nasıl? Olayları sırayla dokun — harflerden gizli bir kelime çıkacak!",
+   `<ol class="items order">${E8.map(e=>`<li data-l="${e[0]}"><span class="slot">${e[0]==="Z"?1:""}</span><b class="mono">${e[0]}.</b> ${wrapWords(e[1])}</li>`).join("")}</ol><div class="code">${[1,2,3,4,5,6,7].map(i=>`<div data-p="${i}">${i===1?"Z":""}</div>`).join("")}</div>`);
+  // Ü9
+  h+=wsTask(9,"Ist Opa Breuer der Münzen-Dieb? Sprecht in der Klasse.","Breuer dede sikke hırsızı mı? Sınıfta konuşun. Fikrini kur, sesli oku ve yüksek sesle tekrar et.",
+   `<div class="opgrid"><div class="opcol"><h4>1. Başlangıç seç</h4><div id="opStart"></div></div><div class="opcol"><h4>2. Gerekçe seç</h4><div id="opWhy"></div></div></div><div class="speech" id="opSpeech"><span class="muted">Ich glaube, …</span></div><div class="row" style="margin-top:20px"><button class="btn ghost sm" id="opSay">🔊 Cümleni dinle</button><span class="muted">Kendi cümleni yaz:</span>${inputHTML("w9_own",340,"Ich glaube, er …")}</div>`);
+  h+=`<div class="kap"><h2>Kapitel 5: Clarissa</h2><span class="badge">S. 13–14</span></div>`;
+  // Ü10
+  h+=wsTask(10,"Interessierst du dich für Mode? Ergänze die Nomen.","Modayla ilgileniyor musun? İsimleri tamamla. (Önce boşluğa, sonra kutudaki kelimeye dokun.)",
+   `<div class="bank" id="bank10">${["Modeschule","Kreation","Mode-Sites","Mode-Ausstellung"].map(w=>`<button data-w="${w}" ${w==="Mode-Ausstellung"?'class="used"':""}>${w}</button>`).join("")}</div>
+    <ol class="items"><li><span class="n">1.</span>Ich besuche eine <b style="color:var(--wine)">Mode-Ausstellung</b>. Dort kann ich modische Kleider ansehen.</li>
+    <li><span class="n">2.</span>Ich gehe im nächsten Jahr auf eine ${inputHTML("w10_2",160)}. Da kann ich alles über Mode lernen.<span class="mark"></span></li>
+    <li><span class="n">3.</span>Im Internet finde ich immer viele interessante Infos über Mode. Ich sehe mir gerne ${inputHTML("w10_3",150)} an.<span class="mark"></span></li>
+    <li><span class="n">4.</span>Ich habe dieses Kleid selbst gemacht. Das ist meine ${inputHTML("w10_4",150)}.<span class="mark"></span></li></ol>
+    <p class="muted">Kleider = elbiseler · ansehen = bakmak, incelemek · lernen = öğrenmek · selbst gemacht = kendim yaptım</p>`);
+  // Ü11
+  const C11=["findet Mode interessant.","geht ab Herbst auf eine Modeschule.","ist 17 Jahre alt.","kennt sich gut mit Computern aus.","braucht Simons Hilfe.","ist eine Freundin von Laura.","ist Gast im Hotel Sommer."];
+  h+=wsTask(11,"Clarissa. Was ist richtig? Kreuze an.","Clarissa. Hangisi doğru? İşaretle (birden fazla doğru var). Herbst = sonbahar · sich auskennen = iyi anlamak · Hilfe = yardım",
+   `<p style="margin:0 0 6px"><b>Clarissa …</b></p><div class="checks">${C11.map((c,i)=>`<label data-i="${i}"><input type="checkbox" data-k="w11_${i}" ${i===0?"checked disabled":""}> ${i+1}. ${wrapWords(c)}</label>`).join("")}</div>`);
+  // Ü12
+  const L12=["Clarissa geht ab September","Jedes Jahr gibt es nur","Die neuen Schüler zeigen ihre Kreationen","Clarissa möchte sehr gern","Die Ausstellung ist","Man kann mit dem Bus"],R12=["30 neue Schüler.","heute und morgen.","auf die Modeschule „MODE-Kreation“.","vom Hotel zur Ausstellung fahren.","in einer Ausstellung.","einen Preis gewinnen."];
+  h+=wsTask(12,"Die Ausstellung. Was passt zusammen? Verbinde.","Sergi. Hangisi hangisiyle uyuyor? Eşleştir. (gewinnen = kazanmak)",matchHTML("w12",L12,R12,{0:"c"}));
+  $("#wsBody").innerHTML=h;
+  bindPersist($("#wsBody"));
+  initWS();
+}
+function matchHTML(k,L,R,fixed){
+  const letters="abcdef".slice(0,R.length).split("");
+  return `<div class="match">${L.map((l,i)=>`<div><b class="mono" style="color:var(--wine)">${i+1}.</b> ${wrapWords(l)}</div><div class="opts" data-i="${i}">${letters.map(x=>`<button data-x="${x}" class="${fixed[i]===x?"on":""}" ${fixed[i]!=null?"disabled":""}>${x}</button>`).join("")}</div>`).join("")}</div><div class="rhs">${R.map((r,j)=>`<div><b>${letters[j]}</b> ${wrapWords(r)}</div>`).join("")}</div>`;
+}
+/* answer keys */
+const KEY={
+ w2:{1:["re:\\bkati\\b"],2:["re:freund"],3:["re:abend|18|achtzehn|nachmittag"],4:["re:simon"],5:["re:chatt|schreib|nachricht|sms|whatsapp|textnachricht|messag|tippen"]},
+ w3:{l1:["re:eis"],l2:["re:zwoelf|\\b12\\b"],l3:["re:muenchen|munchen|munich"],l4:["re:kati|cousine|simon|hotel|wien"],s1:["re:dreizehn|\\b13\\b"],s2:["re:hotel|onkel"],s3:["re:muenchen|munchen"],s4:["re:englisch"],s5:["re:sven|hotel|rezeption|wagner"]},
+ w4:{1:["re:eiscafe|eis cafe|cafe|eiscaffe"],2:["re:ringstrasse|ring strasse|ringstr|53"],3:["re:elf|\\b11\\b"]},
+ w5:{1:["Rezeption"],2:["Schlüssel","Schluessel"],3:["Zimmer"],4:["frühstücken","fruehstuecken"],5:["Restaurant"],6:["Bar"]},
+ w6:{1:"c",2:"b",3:"e",4:"a"},
+ w10:{2:["Modeschule"],3:["Mode-Sites","Modesites","Mode Sites"],4:["Kreation"]},
+ w11:[1,1,0,0,1,0,1],
+ w12:{1:"a",2:"e",3:"f",4:"b",5:"d"}
+};
+const HINT={
+ 1:"Kapitel 3'te ara: Rezeption, Schlüssel, Bar, Gäste, Restaurant, Hotel-Café… Büyük harfle başla (isimler!).",
+ 2:"Kişiler sayfası ve Kapitel 1'e bak: Laura nereden geliyor? Kuzeninin adı? Saat 18:12 sabah mı akşam mı? Laura'yı kim alıyor? Telefonda konuşuyorlar mı, yazışıyorlar mı?",
+ 3:"Laura: Kapitel 2'de ne yemek istiyor? Kaç yaşında? (s. 4) — Simon: Kaç yaşında? Tatilde nerede çalışıyor? Otelde misafirlerle hangi dili konuşuyor?",
+ 4:"Kapitel 2: Nerede oturuyorlar? Otelin adresi? Laura “Vielleicht um …?” diyor.",
+ 5:"Gizli kelimeler: B_r, Schl_ss_l, R_z_pt_on, R_st__r_nt, fr_hst_ck_n, Z_mm_r.",
+ 6:"Kapitel 3, satır 31–39'u tekrar oku. Enkel = torun.",
+ 7:"Breuer dede resepsiyona geliyor mu, yoksa telefon mu ediyor? Laura onları nasıl buluyor? Otobüse biniyorlar mı?",
+ 8:"Önce sikkeler düşüyor (Simon telefon ederken), sonra ceketi götürüyorlar, sonra büfe…",
+ 9:"Konuşma alıştırması: doğru/yanlış yok. Gerekçeni kitaptan seç!",
+ 10:"Modeschule = okul, Kreation = kendi yaptığın tasarım, Mode-Sites = internet sayfaları.",
+ 11:"Clarissa kaç yaşında? (s. 5) Bilgisayardan kim anlıyor? Otelde mi kalıyor? Eylül hangi mevsim?",
+ 12:"Kapitel 5'in ikinci yarısını oku: sergi ne zaman? Kaç yeni öğrenci?"
+};
+function initWS(){
+  // generic task buttons
+  $$("#wsBody .task").forEach(t=>{const n=+t.id.slice(2);$$("[data-act]",t).forEach(b=>b.onclick=()=>{
+    const fb=$(".fb",t);fb.className="fb";
+    if(b.dataset.act==="hint"){fb.classList.add("hint");fb.textContent="💡 "+HINT[n];return}
+    if(b.dataset.act==="show"){showAns(n,t);return}
+    checkTask(n,t);updScore()})});
+  // Ü5 word search
+  const words=["Bar","Schlüssel","Rezeption","Restaurant","frühstücken","Zimmer"];
+  let first=null;
+  const markFound=()=>{(S.ws.w5found||[]).forEach(w=>{const ch=$(`#foundList [data-f="${w}"]`);if(ch){ch.textContent=w;ch.classList.add("got")}const pos=S.ws["w5pos_"+w];if(pos)for(let c=pos[1];c<=pos[2];c++)$(`#wsGrid .l[data-r="${pos[0]}"][data-c="${c}"]`).classList.add("found")})};
+  markFound();
+  $$("#wsGrid .l").forEach(l=>l.onclick=()=>{
+    const r=+l.dataset.r,c=+l.dataset.c;
+    if(!first){first={r,c,el:l};l.classList.add("sel1");return}
+    first.el.classList.remove("sel1");
+    if(first.r!==r){first={r,c,el:l};l.classList.add("sel1");return}
+    const a=Math.min(first.c,c),b=Math.max(first.c,c);first=null;
+    const s=$$(`#wsGrid .l[data-r="${r}"]`).slice(a,b+1).map(x=>x.textContent).join("");
+    const w=words.find(w=>w.toLowerCase()===s.toLowerCase());
+    if(w){S.ws.w5found=[...new Set([...(S.ws.w5found||[]),w])];S.ws["w5pos_"+w]=[r,a,b];save();markFound();award("ws5f:"+w,1,w+" bulundu! +1")}
+    else toast("„"+s+"“ – bu kelime değil");
+  });
+  // Ü6/Ü12 match opts
+  $$("#wsBody .match .opts").forEach(o=>{const k=o.closest(".task").id==="ue6"?"w6":"w12";const i=o.dataset.i;const sv=S.ws[k+"_"+i];if(sv)$$("button",o).forEach(b=>b.classList.toggle("on",b.dataset.x===sv));
+    $$("button",o).forEach(b=>b.onclick=()=>{$$("button",o).forEach(x=>x.classList.remove("on","ok","bad"));b.classList.add("on");S.ws[k+"_"+i]=b.dataset.x;save()})});
+  // Ü7 notes
+  $$("#ue7 .note").forEach(n=>{if(S.ws.w7==n.dataset.n)n.classList.add("on");n.onclick=e=>{if(e.target.closest(".w"))return;$$("#ue7 .note").forEach(x=>x.classList.remove("on","ok","bad"));n.classList.add("on");S.ws.w7=n.dataset.n;save()}});
+  // Ü8 ordering
+  const draw8=()=>{const seq=S.ws.w8||["Z"];$$("#ue8 li").forEach(li=>{const p=seq.indexOf(li.dataset.l);$(".slot",li).textContent=p>=0?p+1:"";li.classList.toggle("picked",p>=0)});$$("#ue8 .code div").forEach((d,i)=>{d.textContent=seq[i]||"";d.classList.remove("ok")})};
+  draw8();
+  $$("#ue8 li").forEach(li=>li.onclick=e=>{if(e.target.closest(".w"))return;const l=li.dataset.l;if(l==="Z")return;let seq=S.ws.w8||["Z"];seq=seq.includes(l)?seq.filter(x=>x!==l):[...seq,l];S.ws.w8=seq;save();draw8()});
+  // Ü9 opinion builder
+  const starts=["Ich glaube, er ist der Dieb,","Ich glaube, er ist nicht der Dieb,","Er ist sicher nicht der Dieb,","Das stimmt nicht,","Er ist sicher der Dieb,"];
+  const why=["denn er hat zwei Goldmünzen in der Jacke.","denn er braucht viel Geld für Moritz.","denn Moritz will nach London.","denn sie haben nur wenig Geld.","denn er ist schon viel zu alt.","denn er kann nicht gut laufen.","denn er ist sehr nett.","denn er liebt Moritz sehr."];
+  const whyTr=["ceketinde iki altın sikke var","Moritz için çok paraya ihtiyacı var","Moritz Londra'ya gitmek istiyor","çok az paraları var","artık çok yaşlı","iyi yürüyemiyor","çok sevimli","Moritz'i çok seviyor"];
+  let op={s:null,w:null};
+  $("#opStart").innerHTML=starts.map((s,i)=>`<button data-i="${i}">${esc(s)}</button>`).join("");
+  $("#opWhy").innerHTML=why.map((s,i)=>`<button data-i="${i}">${esc(s)}<div class="tr" style="font-size:14px">${whyTr[i]}</div></button>`).join("");
+  const upd9=()=>{$$("#opStart button").forEach(b=>b.classList.toggle("on",+b.dataset.i===op.s));$$("#opWhy button").forEach(b=>b.classList.toggle("on",+b.dataset.i===op.w));if(op.s!=null&&op.w!=null){$("#opSpeech").textContent=starts[op.s]+" "+why[op.w];S.ws.w9=$("#opSpeech").textContent;save();award("w9",3,"Fikrini söyledin! +3")}};
+  $$("#opStart button").forEach(b=>b.onclick=()=>{op.s=+b.dataset.i;upd9()});
+  $$("#opWhy button").forEach(b=>b.onclick=()=>{op.w=+b.dataset.i;upd9()});
+  if(S.ws.w9)$("#opSpeech").textContent=S.ws.w9;
+  $("#opSay").onclick=()=>say(($('[data-k="w9_own"]').value.trim())||$("#opSpeech").textContent);
+  // Ü10 bank
+  let focus10=null;
+  $$('#ue10 [data-k^="w10_"]').forEach(i=>i.addEventListener("focus",()=>focus10=i));
+  $$("#bank10 button").forEach(b=>b.onclick=()=>{if(b.classList.contains("used")&&b.dataset.w==="Mode-Ausstellung")return;const t=focus10||$$('#ue10 [data-k^="w10_"]').find(x=>!x.value);if(!t)return;t.value=b.dataset.w;t.dispatchEvent(new Event("input"));focus10=null;upd10()});
+  const upd10=()=>{const vals=$$('#ue10 [data-k^="w10_"]').map(x=>x.value);$$("#bank10 button").forEach(b=>{if(b.dataset.w!=="Mode-Ausstellung")b.classList.toggle("used",vals.includes(b.dataset.w))})};
+  $$('#ue10 [data-k^="w10_"]').forEach(i=>i.addEventListener("input",upd10));upd10();
+  // Ü1 live mark
+  $$('#ue1 input').forEach(i=>i.addEventListener("input",()=>i.classList.remove("ok","maybe","bad")));
+  updScore();
+}
+function wsVal(k){return S.ws[k]||""}
+function setMark(el,ok){const m=el.parentElement.querySelector(".mark")||el.closest("li")?.querySelector(".mark");if(m){m.className="mark "+(ok?"ok":"bad");m.textContent=ok?"✓":"✗"}}
+function checkTask(n,t){
+  const fb=$(".fb",t);let ok=0,tot=0,msg="";
+  const inp=k=>$(`[data-k="${k}"]`,t);
+  if(n===1){const seen=new Set();$$("input",t).forEach(i=>{const v=nz(i.value).replace(/^(der|die|das) /,"");if(!v)return;tot++;if(seen.has(v)){i.classList.add("bad");return}seen.add(v);
+      if(BOOKHOTEL.includes(v)){i.classList.add("ok");ok++;award("w1:"+v)}else if(HOTELWORDS.includes(v)||/zimmer|hotel/.test(v)){i.classList.add("maybe");ok++;award("w1:"+v)}else i.classList.add("bad")});
+    tot=Math.max(tot,5);msg=ok>=5?"Süper kelime kirpisi! 🦔":"En az 5 kelime yaz. Kitapta Kapitel 3'e bak.";}
+  if(n===2||n===3||n===4||n===5||n===10){const K=KEY["w"+n];Object.keys(K).forEach(k=>{const el=inp((n===3?"w3_":"w"+n+"_")+k);tot++;const r=accepts(el.value,K[k]);markInput(el,r);setMark(el,r);if(r){ok++;award("w"+n+":"+k)}});
+    if(n===2)msg=ok===tot?"Hepsi doğru!":"Kırmızı olanlarda hangi bilgi yanlış? İpucuna bak.";
+    if(n===5){const f=(S.ws.w5found||[]).length;msg=`Bulmacada bulunan kelime: ${f}/6.`}}
+  if(n===6||n===12){const K=KEY["w"+n];Object.keys(K).forEach(i=>{tot++;const o=$(`.opts[data-i="${i}"]`,t);const sv=S.ws["w"+n+"_"+i];$$("button",o).forEach(b=>b.classList.remove("ok","bad"));const b=sv&&$(`button[data-x="${sv}"]`,o);if(b){if(sv===K[i]){b.classList.add("ok");ok++;award("w"+n+":"+i)}else b.classList.add("bad")}})}
+  if(n===7){tot=1;$$(".note",t).forEach(x=>x.classList.remove("ok","bad"));const sel=$(".note.on",t);if(sel){if(sel.dataset.n==="2"){sel.classList.add("ok");ok=1;award("w7",3)}else{sel.classList.add("bad");msg=sel.dataset.n==="0"?"Breuer dede resepsiyona gelmiyor; ayrıca yürüyorlar.":"Laura onları komik değil, sevimli buluyor; ve otobüse binmiyorlar."}}else msg="Bir metin seç."}
+  if(n===8){const target="ZEITUNG".split("");const seq=S.ws.w8||["Z"];tot=6;$$("#ue8 .code div").forEach((d,i)=>{if(i&&seq[i]===target[i]){d.classList.add("ok");ok++}});if(ok===6){award("w8",5,"ZEITUNG! Gazete! +5");msg="Gizli kelime: ZEITUNG = gazete 📰"}else msg=seq.length<7?"Tüm olayları sırayla seç.":"Bazı yerler yanlış — yeşil olmayanları kontrol et."}
+  if(n===9){tot=1;ok=S.ws.w9?1:0;msg=ok?"Harika! Şimdi cümleni yüksek sesle söyle ve sınıfta arkadaşlarınla tartış.":"Bir başlangıç ve bir gerekçe seç."}
+  if(n===11){const K=KEY.w11;$$(".checks label",t).forEach((l,i)=>{if(i===0)return;tot++;const c=$("input",l).checked;l.classList.remove("ok","bad");if(c===!!K[i]){ok++;if(c)l.classList.add("ok");award("w11:"+i)}else l.classList.add("bad")})}
+  WS_STATE[n]=[ok,tot];S.ws["res"+n]=[ok,tot];save();
+  $(".stat",t).textContent=ok+" / "+tot;
+  fb.className="fb "+(ok===tot?"ok":"bad");fb.textContent=(ok===tot?"✓ Sehr gut! ":"")+msg;
+}
+function showAns(n,t){
+  const fb=$(".fb",t);fb.className="fb hint";
+  const A={1:"Örnek: Rezeption, Schlüssel, Gäste, Bar, Restaurant, Hotel-Café, frühstücken, Reinigung, Hotel-WLAN",2:"2. …Cousine Kati… 3. Simon ist der beste Freund von Laura. 4. Laura kommt am Abend (um 18:12 Uhr) an. 5. Simon holt sie vom Bahnhof ab. 6. Laura und Simon chatten / schreiben Nachrichten.",3:"Laura: isst gern Eis · ist zwölf Jahre alt · lebt in München · besucht ihre Cousine Kati (in Wien). — Simon: ist 13 Jahre alt · arbeitet in den Ferien im Hotel · lebt in München · spricht gern Englisch · sein Onkel heißt Sven / arbeitet an der Rezeption im Hotel Sommer.",4:"1. Im Eiscafé. 2. In der Ringstraße 53. 3. Morgen um elf (Uhr).",5:"1. Rezeption 2. Schlüssel – Zimmer 3. frühstücken 4. Restaurant 5. Bar",6:"1d · 2c · 3b · 4e · 5a",7:"Text 3 ist richtig.",8:"Z – E – I – T – U – N – G = ZEITUNG",9:"Örnek: Ich glaube, er ist nicht der Dieb, denn er ist schon viel zu alt.",10:"2. Modeschule 3. Mode-Sites 4. Kreation",11:"Richtig: 1, 2, 5, 7 (Clarissa 18 yaşında; bilgisayardan Simon anlıyor; Laura'nın arkadaşı değil.)",12:"1c · 2a · 3e · 4f · 5b · 6d"};
+  fb.textContent="Cevap: "+A[n];
+}
+function updScore(){
+  const nums=[1,2,3,4,5,6,7,8,9,10,11,12];let s=0;nums.forEach(n=>{const r=S.ws["res"+n];if(r)s+=r[1]?r[0]/r[1]:0});
+  $("#wsScore").textContent=Math.round(s/nums.length*100)+"%";
+}
+function initWSFooter(){
+  $("#copyRes").onclick=()=>{
+    const lines=[`Geheimnis im Hotel – Aufgaben`,`${S.stName||"-"} ${S.stSur||""} · Klasse ${S.stKl||"-"} · Nr. ${S.stNr||"-"}`,``];
+    for(let n=1;n<=12;n++){const r=S.ws["res"+n];lines.push(`Ü${n}: ${r?r[0]+"/"+r[1]:"kontrol edilmedi"}`)}
+    lines.push(``,`Ü9 Meinung: ${S.ws.w9_own||S.ws.w9||"-"}`,`Gesamt: ${$("#wsScore").textContent} · Münzen: ${coinTotal()}`);
+    const txt=lines.join("\n");$("#resOut").style.display="block";$("#resOut").textContent=txt;
+    try{navigator.clipboard.writeText(txt).then(()=>toast("Kopyalandı ✓"),()=>toast("Metni seçip kopyala"))}catch(e){toast("Metni seçip kopyala")}
+  };
+  let armed=false;
+  $("#resetWs").onclick=e=>{if(!armed){armed=true;e.target.textContent="Emin misin? Tekrar dokun";setTimeout(()=>{armed=false;e.target.textContent="Kâğıdı sıfırla"},3000);return}
+    Object.keys(S.ws).forEach(k=>delete S.ws[k]);save();renderWS();e.target.textContent="Kâğıdı sıfırla";armed=false;toast("Kâğıt sıfırlandı")};
+}
+
+/* ---------- games ---------- */
+const GAMES=[["memory","🧠 Hafıza"],["artikel","🎯 der · die · das"],["wer","🎭 Kim söyledi?"],["diktat","🎧 Dinle & yaz"],["puzzle","🧩 Cümle yapbozu"],["rf","✔✘ Doğru mu?"]];
+let gameCur="memory";
+function renderGames(){
+  $("#gameBar").innerHTML=GAMES.map(g=>`<button class="pill ${g[0]===gameCur?"on":""}" data-g="${g[0]}">${g[1]}</button>`).join("");
+  $$("#gameBar button").forEach(b=>b.onclick=()=>{gameCur=b.dataset.g;clearInterval(artTm);clearTimeout(artTo);stopAudio();renderGames()});
+  ({memory:gMemory,artikel:gArtikel,wer:gWer,diktat:gDiktat,puzzle:gPuzzle,rf:gRF})[gameCur]($("#gameBox"));
+}
+function gMemory(box){
+  const pick=shuffle(V.filter(v=>v.w.length<14)).slice(0,8);
+  const cards=shuffle(pick.flatMap((v,i)=>[{i,t:vDisp(v),de:1},{i,t:v.tr.split(",")[0]}]));
+  let open=[],done=0,moves=0;
+  box.innerHTML=`<div class="row"><h3 style="margin:0">Almanca kelimeyi Türkçesiyle eşleştir</h3><span class="muted" id="memInfo">Hamle: 0</span><button class="btn sm ghost" id="memNew" style="margin-left:auto">Yeni oyun</button></div><div class="memory" style="margin-top:12px">${cards.map((c,k)=>`<button class="mem" data-k="${k}">${esc(c.t)}</button>`).join("")}</div>`;
+  $("#memNew").onclick=()=>gMemory(box);
+  $$(".mem",box).forEach(b=>b.onclick=()=>{const c=cards[+b.dataset.k];if(b.classList.contains("open")||b.classList.contains("done")||open.length===2)return;
+    b.classList.add("open");if(c.de)say(c.t);open.push([b,c]);
+    if(open.length===2){moves++;$("#memInfo").textContent="Hamle: "+moves;const[x,y]=open;
+      if(x[1].i===y[1].i){setTimeout(()=>{x[0].classList.add("done");y[0].classList.add("done");open=[];done++;if(done===8){box.insertAdjacentHTML("beforeend",`<p class="big" style="text-align:center">🎉 ${moves} hamlede bitti!</p>`);award("mem:"+new Date().toDateString(),3,"Hafıza oyunu +3")}},350)}
+      else setTimeout(()=>{x[0].classList.remove("open");y[0].classList.remove("open");open=[]},900)}});
+}
+let artTm=0,artTo=0;
+function gArtikel(box){
+  const pool=shuffle(V.filter(v=>v.a)).slice(0,12);let i=0,score=0,tm,left;
+  const next=()=>{clearInterval(tm);if(!box.isConnected||gameCur!=="artikel")return;if(i>=pool.length){box.innerHTML=`<div class="artgame"><h3>Bitti!</h3><p class="big">${score} / ${pool.length} doğru</p><button class="btn" id="aAgain">Tekrar oyna</button></div>`;$("#aAgain").onclick=()=>gArtikel(box);return}
+    const v=pool[i];left=100;
+    box.innerHTML=`<div class="artgame"><div class="muted">${i+1} / ${pool.length} · Puan: ${score}</div><div class="word">${esc(v.w)}</div><div class="muted">${esc(v.tr)}</div><div class="timer"><i id="aT"></i></div><div><button class="abtn" style="background:var(--der)" data-a="der">der</button><button class="abtn" style="background:var(--die)" data-a="die">die</button><button class="abtn" style="background:var(--das)" data-a="das">das</button></div><p id="aFb" class="big" style="min-height:34px"></p></div>`;
+    let answered=false;
+    const fin=a=>{if(answered)return;answered=true;clearInterval(tm);if(!$("#aFb"))return;const ok=a===v.a;if(ok){score++;award("art:"+v.w)}$("#aFb").innerHTML=ok?`<span style="color:var(--ok)">✓ <b>${v.a} ${esc(v.w)}</b></span>`:`<span style="color:var(--bad)">✗ <b class="art-${v.a}">${v.a}</b> ${esc(v.w)}</span>`;say(v.a+" "+v.w);i++;artTo=setTimeout(next,1500)};
+    $$("[data-a]",box).forEach(b=>b.onclick=()=>fin(b.dataset.a));
+    artTm=tm=setInterval(()=>{left-=2;const t=$("#aT");if(t)t.style.width=left+"%";if(left<=0)fin(null)},120);
+  };next();
+}
+function gWer(box){
+  const pool=SENTS.filter(s=>["D","C","P"].includes(s.t)&&SPK[s.sp]&&s.de.split(" ").length>=3);
+  let score=0,n=0;
+  const round=()=>{const s=pool[Math.random()*pool.length|0];
+    const opts=shuffle([s.sp,...shuffle(["Laura","Simon","Sven","Moritz","Clarissa"].filter(x=>x!==s.sp)).slice(0,3)]);
+    box.innerHTML=`<div style="text-align:center"><h3>Bu cümleyi kim söylüyor?</h3><p class="muted">Puan: ${score} / ${n}</p><button class="btn brass" id="wPlay">▶ Dinle</button> <button class="btn ghost sm" id="wTxt">Metni göster</button><p id="wSent" class="big" style="visibility:hidden;margin:14px 0">„${esc(s.de)}“<br><span class="tr">${esc(s.tr)}</span></p><div class="choices">${opts.map(o=>`<button data-o="${o}"><span class="avatar" style="background:${SPK[o][1]};width:30px;height:30px">${SPK[o][0][0]}</span>${esc(SPK[o][0])}</button>`).join("")}</div><p id="wFb" class="big"></p></div>`;
+    $("#wPlay").onclick=()=>playSent(s);setTimeout(()=>playSent(s),250);
+    $("#wTxt").onclick=()=>$("#wSent").style.visibility="visible";
+    let done=false;$$(".choices button",box).forEach(b=>b.onclick=()=>{if(done)return;done=true;n++;const ok=b.dataset.o===s.sp;b.classList.add(ok?"ok":"bad");if(!ok)$(`.choices [data-o="${s.sp}"]`,box).classList.add("ok");if(ok){score++;award("wer:"+s.de)}$("#wSent").style.visibility="visible";$("#wFb").innerHTML=`<button class="btn" id="wNext">Sonraki →</button>`;$("#wNext").onclick=round});
+  };round();
+}
+function gDiktat(box){
+  const pool=SENTS.filter(s=>s.t!=="T"&&s.t!=="H"&&s.t!=="S"&&s.de.split(" ").length>=4&&s.de.split(" ").length<=12);
+  let score=0,n=0;
+  const round=()=>{const s=pool[Math.random()*pool.length|0];
+    const toks=s.de.split(" ");const cand=toks.map((t,i)=>[t.replace(/[^A-Za-zÄÖÜäöüß\-]/g,""),i]).filter(([t])=>t.length>3&&lookup(t));
+    if(!cand.length)return round();const [w,wi]=cand[Math.random()*cand.length|0];
+    const shown=toks.map((t,i)=>i===wi?t.replace(w,`<input class="blank" id="dIn" style="width:${Math.max(90,w.length*13)}px" autocomplete="off" autocapitalize="off" spellcheck="false">`):esc(t)).join(" ");
+    box.innerHTML=`<div style="text-align:center"><h3>Dinle ve eksik kelimeyi yaz</h3><p class="muted">Puan: ${score} / ${n}</p><button class="btn brass" id="dPlay">▶ Dinle</button><button class="btn ghost sm" id="dSlow" style="margin-left:6px">🐢 Yavaş</button><p class="big" style="margin:18px 0">${shown}</p><p class="tr">${esc(s.tr)}</p><button class="btn" id="dChk">Kontrol et</button><p id="dFb" class="big"></p></div>`;
+    $("#dPlay").onclick=()=>{aud.playbackRate=1;playSent(s)};
+    $("#dSlow").onclick=()=>{aud.playbackRate=.75;playSent(s)};
+    setTimeout(()=>playSent(s),250);$("#dIn").focus();
+    let done=false;const chk=()=>{if(done)return;const v=$("#dIn").value;const ok=nz(v)===nz(w);const near=!ok&&nz(v).length>2&&nz(w).startsWith(nz(v).slice(0,3));
+      if(!ok&&near&&!$("#dIn").dataset.tried){$("#dIn").dataset.tried=1;$("#dFb").innerHTML=`<span style="color:var(--hint)">Çok yakın! Yazımı kontrol et (büyük harf, ü/ä/ö, ß).</span>`;return}
+      done=true;n++;if(ok){score++;award("dik:"+s.de+w)}markInput($("#dIn"),ok);$("#dFb").innerHTML=(ok?`<span style="color:var(--ok)">✓ Richtig!</span>`:`<span style="color:var(--bad)">✗ Doğrusu: <b>${esc(w)}</b></span>`)+` <button class="btn sm" id="dNext">Sonraki →</button>`;$("#dNext").onclick=()=>{aud.playbackRate=1;round()}};
+    $("#dChk").onclick=chk;$("#dIn").onkeydown=e=>{if(e.key==="Enter")chk()};
+  };round();
+}
+function gPuzzle(box){
+  const pool=shuffle(SENTS.filter(s=>["D","N","C"].includes(s.t)&&/^[^,;:„“…]+[.?!]$/.test(s.de)&&s.de.split(" ").length>=4&&s.de.split(" ").length<=9)).slice(0,10).map(s=>[s.de,s.tr]);
+  exOrder(box,pool,"puz");
+}
+const RF=[["Laura war fünf Tage in Wien.",1],["Kati war in Wien krank.",1],["Simon holt Laura am Morgen ab.",0],["Das Hotel Sommer ist in der Ringstraße 53.",1],["Onkel Sven arbeitet schon zwanzig Jahre im Hotel.",0],["Mister Brown kommt aus London.",0],["Moritz übt in der Bar Gitarre.",1],["Moritz und Opa Breuer haben viel Geld.",0],["Opa Breuer wohnt in Zimmer 104.",1],["Laura und Simon fahren mit dem Bus zur Reinigung.",0],["In der Jacke sind zwei Goldmünzen.",1],["Im Münzmuseum fehlen 100 Goldmünzen.",0],["Laura glaubt: Opa Breuer ist der Dieb.",0],["Clarissa hat ein Problem mit dem Internet.",1],["Die Modeschule nimmt jedes Jahr 30 neue Schüler auf.",1],["Clarissa fährt mit dem Bus Nummer 22 zur Modeschule.",0]];
+function gRF(box){
+  const pool=shuffle(RF);let i=0,score=0;
+  const r=()=>{if(i>=pool.length){box.innerHTML=`<div class="artgame"><p class="big">${score} / ${pool.length} doğru</p><button class="btn" id="rfA">Tekrar</button></div>`;$("#rfA").onclick=()=>gRF(box);return}
+    const [q,a]=pool[i];
+    box.innerHTML=`<div class="artgame"><div class="muted">${i+1} / ${pool.length} · Puan ${score}</div><p class="big" style="font-size:26px">${wrapWords(q)}</p><div class="choices"><button data-v="1">✔ richtig</button><button data-v="0">✘ falsch</button></div><p id="rfFb" class="big"></p></div>`;
+    let done=false;$$(".choices button",box).forEach(b=>b.onclick=()=>{if(done)return;done=true;const ok=+b.dataset.v===a;b.classList.add(ok?"ok":"bad");if(ok){score++;award("rf:"+q)}$("#rfFb").innerHTML=(ok?"✓ ":"✗ ")+`<button class="btn sm" id="rfN">Sonraki →</button>`;$("#rfN").onclick=()=>{i++;r()}});
+  };r();
+}
+
+/* ---------- init ---------- */
+showCoins();renderLobby();initPlayer();renderReader();initVocab();renderGrammar();renderWS();initWSFooter();renderGames();route();prefetchAll();
+
+</script>
+</body>
+</html>
